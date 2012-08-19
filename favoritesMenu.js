@@ -7,26 +7,36 @@
 --- *pmr 10/2/11 - created
 --- *pmr 2/25/12 - update images to use a 'button' class instead of hardcoding width
 --- *pmr 7/15/12 - re-enable, and cut out the code that handled hiding/showing the list
+--- *pmr 8/18/12 - rewritten to be an inline popup instead of a separate UI element
 ---------------------------*/
 
-function acceptFavorite() {
-	//first set up the loading icon
-	document.getElementById('newFavoriteCell').innerHTML = 
-	"<img " + 
-		"src='images/loadingIcon.gif' " +
-		"style='padding-top: 12px; padding-left: 6px;' " + 
-	    "width=28 height=28> " +
-	"</img>";
-
-	//copy the item out of the dropdown list
-	var listObj = document.getElementById('favoritesList')
-	var itemName = listObj.options[listObj.selectedIndex].text;
-	
-	//reselect the null option
-	document.getElementById('favoritesList').options[0].selected = true;
-	
-	//run AJAX to store that item to the server
-	addItemToList(itemName);
-	
-	//don't refresh the list - that's handled by the callback
+window.onload = function () {
+	initalizeFavoritesMenuHandlers();
 }
+
+function initalizeFavoritesMenuHandlers() {
+	var textBox = document.getElementById('newItem')
+	
+	/*When key presses are detected, refresh the text contents of the list*/
+	var updateDisplayList = function () {
+		return function () {
+			var searchText = document.getElementById('newItem').value;
+			document.getElementById('inlineFavorites').innerHTML = searchText;
+		};
+	};	
+	textBox.onkeydown = updateDisplayList();
+	textBox.onkeypress = updateDisplayList();
+	textBox.onkeyup = updateDisplayList();
+	
+	
+	/*When the cursor/focus leaves the text box, hide the list*/
+	var hideList = function () {
+		return function () {
+			document.getElementById('inlineFavorites').innerHTML = ""; 
+		};		
+	};	
+	textBox.onblur = hideList();
+}
+
+
+

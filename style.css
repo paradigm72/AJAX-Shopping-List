@@ -70,20 +70,13 @@ overridden massively for mobile devices in the high res sheet)*/
 }
 
 
-/*Favorites row*/
-.favoritesMarkerIcon, .addFavorite {
-	width: 34px;
-	padding-top: 10px;
-	padding-right: 2px;
-}
-.favoritesDropDown {
-	padding-top: 10px;
-	padding-right: 10px;
-}
-#favoritesList {
+/*New inline favorites box*/
+#inlineFavorites {
+	background-color: #ffffff;
 	width: 100%;
-	margin-right: 5px;
-	font-size: 1em;
+	height: auto;
+	color: black;
+	margin-top: -2px;
 }
 
 /*overrides a default in webkit that puts huge space underneath a form*/
