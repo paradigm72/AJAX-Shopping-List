@@ -1,0 +1,36 @@
+/*-----------------------
+--- Paul Romine
+--- (c) 2012
+---	NAME: 		highResStyle.css
+---	PURPOSE: 	styling for the shopping list app, this is an override css used for mobile
+---           the "highRes" moniker is a little misleading since right now it's based on device
+---           screen width
+---
+--- *pmr 2/25/12 - created
+---------------------------*/
+
+
+/*Text needs to be much, much bigger to read on iPhone retina screen*/
+div, td {
+	-webkit-text-size-adjust: 300%;
+}
+
+/*Buttons also much bigger - images here and their containing cells below*/
+.button {
+	height: 92px;
+	width: 92px;
+}
+
+
+.markGotten, .unMarkGotten, .delete, .favoritesMarkerIcon,
+.addFavorite, .newItemMarkerIcon, .addText {
+	width: 100px;
+}
+
+
+.loadingSpinner {
+	height: 84px;
+	width: 84px;
+}
+
+

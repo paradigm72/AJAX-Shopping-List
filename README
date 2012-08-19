@@ -1,0 +1,7 @@
+This is an AJAX shopping list designed for a group of people who want to share and edit a single list using various mobile devices.
+
+The basic architecture is a single PHP page with a lot of Javascript hooks that when tapped, call asynchronously into server-side PHP to interact with the list. All of these interactions have callbacks that go refresh the list when the server is done saving the modification.
+
+Outstanding features under construction as of 7/15/12 are:
+-Ability to create multiple lists (currently this code does not scale at all)
+-Automatic creation of the favorites list (or at least non-hardcoded storage)

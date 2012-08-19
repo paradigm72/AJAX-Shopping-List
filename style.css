@@ -1,0 +1,120 @@
+/*-----------------------
+--- Paul Romine
+--- (c) 2011
+---	NAME: 		style.css
+---	PURPOSE: 	styling for the shopping list app
+---
+--- *pmr 10/2/11 - making + button bigger, more padding around it
+--- *pmr 2/25/12 - added image sizing here, since it now varies by stylesheet
+---------------------------*/
+
+
+
+/* General page layout, header formatting */
+body {
+	background-color: #444;
+	color: #EEEEEE;
+	font-family: Calibri, Verdana, Arial;
+}
+
+#header {
+	font-size: 2.2em;
+	font-weight: bold;
+	background-color: #666;
+}
+
+
+/*The list of items - spacing, formatting, etc*/
+table.items {
+	table-layout: fixed;
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+td {
+	border-bottom: 2px solid #888;
+	padding-top: 20px;
+	font-size: 1.4em;
+}
+.gottenItem {
+	text-decoration: line-through;
+	color: #777;
+}
+
+/*general button size (for the inner <img> tag -
+overridden massively for mobile devices in the high res sheet)*/
+.button {
+	height: 32px;
+	width: 32px;
+}
+
+
+
+/*button: mark an item as gotten*/
+.markGotten {
+	width: 40px;
+	padding-right: 8px;
+}
+
+
+/*button: unmark an item as gotten*/
+.unMarkGotten {
+	width: 40px;
+	padding-right: 8px;
+}
+
+/*buttons: delete item */
+.delete {
+	width: 34px;
+	padding-right: 2px;
+}
+
+
+/*Favorites row*/
+.favoritesMarkerIcon, .addFavorite {
+	width: 34px;
+	padding-top: 10px;
+	padding-right: 2px;
+}
+.favoritesDropDown {
+	padding-top: 10px;
+	padding-right: 10px;
+}
+#favoritesList {
+	width: 100%;
+	margin-right: 5px;
+	font-size: 1em;
+}
+
+/*overrides a default in webkit that puts huge space underneath a form*/
+form {
+	margin-bottom: 0em;
+}
+
+
+
+
+/*New text item row */
+.newItemMarkerIcon, .addText {
+	width: 34px;
+	padding-top: 10px;
+	padding-right: 2px;
+	border-bottom: 0px;
+}
+.newText {
+	padding-top: 10px;
+	padding-right: 10px;
+	border-bottom: 0px;
+}
+#newItem {
+	width: 100%;
+	margin-right: 5px;
+	font-size: 1em;
+}
+
+
+
+
+	
+	
+	
