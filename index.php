@@ -49,30 +49,6 @@ retrieveShoppingList();
 <!--Secondary table for favorites menu and "add item" entry box"-->
 <table class="items">
 
-<!--New item from favorites dropdown-->
-<!--*pmr 8/12/12 - removing again due to usability problems
-<tr id='favoritesRow'>
-	<td class='favoritesMarkerIcon'>
-		<img class='button' src='images\favorites.png'>
-	</td>
-	<td class='favoritesDropDown'>
-		<form action='null.php' onsubmit="acceptFavorite(); return false;">
-			<select name='favorites' id='favoritesList' onblur="acceptFavorite();">
-				<option value=''></option>
-				<option value='v8 fusion'>V8 Fusion</option>
-				<option value='protein bars'>Protein Bars</option>
-				<option value='turkey jerky'>Turkey Jerky</option>
-				<option value='eggs'>Eggs</option>
-				<option value='bacon'>Bacon</option>
-			</select>
-		</form>
-	</td>	
-	<td class='addFavorite' id='newFavoriteCell'>
-		<img src='images\add.png' class='button' onclick='acceptFavorite();'>
-	</td>
-</tr>
--->
-
 <!--New item text box-->
 <form action="null.php" onsubmit="addItemFromNewTextBox(); return false;">
 <tr id='inputRow'>
