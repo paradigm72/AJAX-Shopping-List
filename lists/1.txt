@@ -2,7 +2,6 @@ Butter||1
 Gotten||0
 New Item||0
 TEst||1
-V8 Fusion||0
-TEst||0
-V8 fusion||0
+v8||0
 Protein||0
+Cheese||0

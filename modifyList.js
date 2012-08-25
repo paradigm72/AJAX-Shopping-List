@@ -115,11 +115,15 @@ function addItemToListHTTPResponse() {
 	if (myReq.readyState == 4) {
 		if (myReq.status == 200) {
 			retrieveShoppingList();
+			
+			//clear out the text box
 			document.getElementById('newItem').value='';
+			
+			//switch the spinner back to the plus icon
 			document.getElementById('newItemCell').innerHTML = 
 			   "<img " +
 			   "src='images/add.png' class='button' " +
-			   "onclick='addItemFromNewTextBox();'></img>";
+			   "onclick='addItemFromNewTextBox();'></img>"; 
 		}
 	}
 }

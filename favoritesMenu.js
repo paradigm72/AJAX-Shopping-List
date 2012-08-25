@@ -21,8 +21,8 @@ function initalizeFavoritesMenuHandlers() {
 	/*When key presses are detected, refresh the text contents of the list*/
 	var updateDisplayList = function () {
 		return function () {
-			var searchText = document.getElementById('newItem').value;
-			document.getElementById('inlineFavorites').innerHTML = searchText;
+			var searchText = textBox.value;
+			inlineFavorites.innerHTML = searchText;
 		};
 	};	
 	textBox.onkeydown = updateDisplayList();
@@ -33,17 +33,18 @@ function initalizeFavoritesMenuHandlers() {
 	/*When the cursor/focus leaves the text box, hide the list*/
 	var hideList = function () {
 		return function () {
-			document.getElementById('inlineFavorites').innerHTML = ""; 
+			inlineFavorites.innerHTML = ""; 
 		};		
 	};	
-	//textBox.onblur = hideList();
+	inlineFavorites.onblur = hideList();
 	
 	
 	/*When the user clicks on an entry in the favorites div, add that to the list*/
 	var favoriteEntryClick = function () {
 		return function () {
 			var itemToAdd = inlineFavorites.innerHTML;
-			addItemToList(itemToAdd);
+			inlineFavorites.innerHTML = ""; 
+			addItemToList(itemToAdd);			
 		};
 	};
 	inlineFavorites.onclick = favoriteEntryClick();
