@@ -16,6 +16,7 @@ window.onload = function () {
 
 function initalizeFavoritesMenuHandlers() {
 	var textBox = document.getElementById('newItem')
+	var inlineFavorites = document.getElementById('inlineFavorites')
 	
 	/*When key presses are detected, refresh the text contents of the list*/
 	var updateDisplayList = function () {
@@ -35,7 +36,17 @@ function initalizeFavoritesMenuHandlers() {
 			document.getElementById('inlineFavorites').innerHTML = ""; 
 		};		
 	};	
-	textBox.onblur = hideList();
+	//textBox.onblur = hideList();
+	
+	
+	/*When the user clicks on an entry in the favorites div, add that to the list*/
+	var favoriteEntryClick = function () {
+		return function () {
+			var itemToAdd = inlineFavorites.innerHTML;
+			addItemToList(itemToAdd);
+		};
+	};
+	inlineFavorites.onclick = favoriteEntryClick();
 }
 
 

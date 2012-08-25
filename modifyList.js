@@ -120,11 +120,6 @@ function addItemToListHTTPResponse() {
 			   "<img " +
 			   "src='images/add.png' class='button' " +
 			   "onclick='addItemFromNewTextBox();'></img>";
-			document.getElementById('favoritesList').value='';
-			document.getElementById('newFavoriteCell').innerHTML = 
-			   "<img " +
-			   "src='images/add.png' class='button' " +
-			   "onclick='acceptFavorite();'></img>";
 		}
 	}
 }
