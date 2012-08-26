@@ -59,7 +59,7 @@
 	else {
 		fclose($dbFilePointer);
 		$dbFilePointer = @fopen("../lists/favorites.txt","a");
-		fwrite($dbFilePointer,$itemName.",1\n");
+		fwrite($dbFilePointer,$itemName."|1\n");
 	}
 		
 	

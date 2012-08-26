@@ -16,14 +16,23 @@ window.onload = function () {
 
 
 var initalizeFavoritesMenuHandlers = function () {
-	var textBox = document.getElementById('newItem')
-	var inlineFavorites = document.getElementById('inlineFavorites')
+	var textBox = document.getElementById('newItem');
+	var inlineFavorites = document.getElementById('inlineFavorites');
+	var inputRow = document.getElementById('inputRow');
 	
 	/*When key presses are detected, refresh the text contents of the list*/
 	var updateDisplayList = function () {
 		return function () {
+			inlineFavorites.innerHTML = "";
 			var searchText = textBox.value;
-			inlineFavorites.innerHTML = searchText;
+			if (searchText.length = 0) { return false; }
+			var re = new RegExp(searchText + ".");
+			for (i=0; i < FavoritesArray.length; i += 1) {
+				var thisFavorite = FavoritesArray[i].childNodes[0].nodeValue;
+				if (thisFavorite.match(re)) {
+					inlineFavorites.innerHTML = FavoritesArray[i].childNodes[0].nodeValue;
+				}
+			}
 		};
 	};	
 	textBox.onkeydown = updateDisplayList();
@@ -37,7 +46,7 @@ var initalizeFavoritesMenuHandlers = function () {
 			inlineFavorites.innerHTML = ""; 
 		};		
 	};	
-	inlineFavorites.onblur = hideList();
+	inputRow.onblur = hideList();
 	
 	
 	/*When the user clicks on an entry in the favorites div, add that to the list*/
@@ -50,3 +59,28 @@ var initalizeFavoritesMenuHandlers = function () {
 	};
 	inlineFavorites.onclick = favoriteEntryClick();
 };
+
+var FavoritesArray = [];
+
+/*Note: this is called by retrieveListHTTPResponse*/
+var loadFavoritesList = function () {
+	var thePage = 'server/retrieveFavorites.php';
+	myRand = parseInt(Math.random()*999999999);
+	var theURL = thePage + "?rand=" + myRand;
+	myReq.open("GET", theURL, true);
+	myReq.onreadystatechange = retrieveFavoritesHTTPResponse;
+	myReq.send(null);		
+}
+
+var retrieveFavoritesHTTPResponse = function () {
+	if (myReq.readyState == 4) {
+		if (myReq.status == 200) {
+			var itemNamesList=myReq.responseXML.getElementsByTagName("itemName");
+			
+			for (i=0; i<itemNamesList.length; i++)
+			{
+				FavoritesArray.push(itemNamesList[i]);
+			}
+		}
+	}		
+}

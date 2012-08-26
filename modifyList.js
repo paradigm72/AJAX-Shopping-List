@@ -34,6 +34,7 @@ function retrieveListHTTPResponse() {
 			{
 				generateItemsTableRow(itemNamesList,i,gottenFlagsList);
 			}
+			loadFavoritesList();
 		}
 	}
 }
@@ -95,7 +96,6 @@ function addItemFromNewTextBox() {
 	//call shared function to do all the AJAX
 	addItemToList(itemName);
 }
-
 
 function addItemToList(itemName) {
 	//send off the ajax request
