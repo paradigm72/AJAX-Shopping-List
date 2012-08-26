@@ -97,20 +97,6 @@ function addItemFromNewTextBox() {
 	addItemToList(itemName);
 }
 
-function addItemToList(itemName) {
-	//send off the ajax request
-	var thePage = 'server/addToList.php';
-	myRand = parseInt(Math.random()*99999999);
-	var theURL = thePage + "?rand=" + myRand;
-	var itemNameParam = "itemName=" + itemName;
-	myReq.open("POST", theURL, true);
-	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.setRequestHeader("Content-length", itemNameParam.length);
-	myReq.setRequestHeader("Connection", "close");
-	myReq.onreadystatechange = addItemToListHTTPResponse;
-	myReq.send(itemNameParam);
-}
-
 function addItemToListHTTPResponse() {
 	if (myReq.readyState == 4) {
 		if (myReq.status == 200) {
@@ -126,6 +112,20 @@ function addItemToListHTTPResponse() {
 			   "onclick='addItemFromNewTextBox();'></img>"; 
 		}
 	}
+}
+
+function addItemToList(itemName) {
+	//send off the ajax request
+	var thePage = 'server/addToList.php';
+	myRand = parseInt(Math.random()*99999999);
+	var theURL = thePage + "?rand=" + myRand;
+	var itemNameParam = "itemName=" + itemName;
+	myReq.open("POST", theURL, true);
+	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	myReq.setRequestHeader("Content-length", itemNameParam.length);
+	myReq.setRequestHeader("Connection", "close");
+	myReq.onreadystatechange = addItemToListHTTPResponse;
+	myReq.send(itemNameParam);
 }
 
 

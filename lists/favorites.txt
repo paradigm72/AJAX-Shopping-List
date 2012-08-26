@@ -4,6 +4,5 @@ Protein|1
 Juice|1
 Water|1
 Milk|1
-
 V8|1
 V8 fusion|1

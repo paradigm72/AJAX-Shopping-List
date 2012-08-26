@@ -25,7 +25,7 @@ var initalizeFavoritesMenuHandlers = function () {
 		return function () {
 			inlineFavorites.innerHTML = "";
 			var searchText = textBox.value;
-			if (searchText.length = 0) { return false; }
+			if (searchText.length == 0) { return true; }
 			var re = new RegExp(searchText + ".");
 			for (i=0; i < FavoritesArray.length; i += 1) {
 				var thisFavorite = FavoritesArray[i].childNodes[0].nodeValue;
@@ -46,7 +46,7 @@ var initalizeFavoritesMenuHandlers = function () {
 			inlineFavorites.innerHTML = ""; 
 		};		
 	};	
-	inputRow.onblur = hideList();
+	//textBox.onblur = hideList();
 	
 	
 	/*When the user clicks on an entry in the favorites div, add that to the list*/
