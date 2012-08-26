@@ -14,7 +14,8 @@ window.onload = function () {
 	initalizeFavoritesMenuHandlers();
 }
 
-function initalizeFavoritesMenuHandlers() {
+
+var initalizeFavoritesMenuHandlers = function () {
 	var textBox = document.getElementById('newItem')
 	var inlineFavorites = document.getElementById('inlineFavorites')
 	
@@ -43,12 +44,9 @@ function initalizeFavoritesMenuHandlers() {
 	var favoriteEntryClick = function () {
 		return function () {
 			var itemToAdd = inlineFavorites.innerHTML;
-			inlineFavorites.innerHTML = ""; 
+			hideList()(); 
 			addItemToList(itemToAdd);			
 		};
 	};
 	inlineFavorites.onclick = favoriteEntryClick();
-}
-
-
-
+};
