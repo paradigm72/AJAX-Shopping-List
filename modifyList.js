@@ -34,7 +34,7 @@ function retrieveListHTTPResponse() {
 			{
 				generateItemsTableRow(itemNamesList,i,gottenFlagsList);
 			}
-			loadFavoritesList();
+			com.letxbe.FavoritesMenu.LoadFavoritesList();
 		}
 	}
 }

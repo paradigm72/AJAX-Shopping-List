@@ -31,7 +31,6 @@ com.letxbe.FavoritesMenu = function () {
 		textBox = document.getElementById('newItem');
 		inlineFavorites = document.getElementById('inlineFavorites');
 		inputRow = document.getElementById('inputRow');
-		FavoritesArray = [];
 	
 	
 		textBox.onkeydown = updateDisplayList;
@@ -57,7 +56,7 @@ com.letxbe.FavoritesMenu = function () {
 	/*When the user clicks on an entry in the favorites div, add that to the list*/
 	function favoriteEntryClick() {
 		var itemToAdd = inlineFavorites.innerHTML;
-		hideList()(); 
+		hideList(); 
 		addItemToList(itemToAdd);			
 	}
 	
@@ -76,17 +75,27 @@ com.letxbe.FavoritesMenu = function () {
 		myReq.send(null);
 	}	
 	
+	/*Add a new item to the favorites list (called from AJAX responder) */
+	function addItemToFavoritesList(itemToAdd) {
+		if (!FavoritesArray) { FavoritesArray = []; }
+		FavoritesArray.push(itemToAdd);
+	}
+	
 	return {
 		Initialize: function() { assignFavoritesEventHandlers(); },
 		UpdateDisplayList: function() { updateDisplayList(); },
 		FavoriteEntryClick: function() { favoriteEntryClick(); },
 		HideList: function() { hideList(); },
-		LoadFavoritesList: function() { loadFavoritesList(); }
+		LoadFavoritesList: function() { loadFavoritesList(); },
+		AddFavoriteToList: function(itemToAdd) { addItemToFavoritesList(itemToAdd); }
 	}
 }();
 
 
-com.letxbe.FavoritesMenu.Initialize();
+window.onload = function() {
+	com.letxbe.FavoritesMenu.Initialize();	
+}
+
 
 
 var retrieveFavoritesHTTPResponse = function () {
@@ -96,7 +105,7 @@ var retrieveFavoritesHTTPResponse = function () {
 			
 			for (i=0; i<itemNamesList.length; i++)
 			{
-				FavoritesArray.push(itemNamesList[i]);
+				com.letxbe.FavoritesMenu.AddFavoriteToList(itemNamesList[i]);
 			}
 		}
 	}		
