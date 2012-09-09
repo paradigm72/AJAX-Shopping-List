@@ -43,7 +43,7 @@
 		
 		//if this line was the item just added as text, stop looping...
 		if ($itemName==$rawItemName) { 
-			$foundMatch = true;
+			//$foundMatch = true;   //for now until the line-updating block is written, don't ever get here
 		}
 	}
 	
@@ -54,6 +54,7 @@
 		$finishedLine = $itemName."|".$newCount;
 		//this is going to need a different loop structure to be able to actually modify an existing
 		//line. can we maybe just delete the line and append a new copy at the end instead?
+		
 	}
 	//otherwise, switch to append mode and just add the item with a count of '1'
 	else {
