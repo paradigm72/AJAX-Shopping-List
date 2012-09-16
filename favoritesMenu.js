@@ -57,7 +57,7 @@ com.letxbe.FavoritesMenu = function () {
 	function favoriteEntryClick() {
 		var itemToAdd = inlineFavorites.innerHTML;
 		hideList(); 
-		addItemToList(itemToAdd);			
+		com.letxbe.ModifyList.AddItemToList(itemToAdd);			
 	}
 	
 	/*When the cursor/focus leaves the text box, hide the list*/
@@ -92,10 +92,15 @@ com.letxbe.FavoritesMenu = function () {
 }();
 
 
-window.onload = function() {
-	com.letxbe.FavoritesMenu.Initialize();	
+var oldonload = window.onload;
+if (typeof window.onload != 'function'){
+	window.onload = com.letxbe.FavoritesMenu.Initialize();
+} else {
+	window.onload = function(){
+	oldonload();
+	com.letxbe.FavoritesMenu.Initialize();
+	}
 }
-
 
 
 var retrieveFavoritesHTTPResponse = function () {
