@@ -81,16 +81,22 @@ function generateItemsTableRow(itemNamesList,index,gottenFlagsList)
 // ADD A NEW ITEM TO THE LIST     ///
 /////////////////////////////////////
 function addItemFromNewTextBox() {
-	//first set up the loading icon
+
+	//get the item name from the text box
+	var itemName = encodeURI(document.getElementById('newItem').value);
+	
+	//handle length zero
+	if (itemName.length == 0) { 
+        return false; 
+    }
+    
+    //first set up the loading icon
 	document.getElementById('newItemCell').innerHTML = 
 	"<img " + 
 		"src='images/loadingIcon.gif' " +
 		"style='padding-top: 12px; padding-left: 6px;' " + 
 	    "class='loadingSpinner'> " +
 	"</img>";
-
-	//get the item name from the text box
-	var itemName = encodeURI(document.getElementById('newItem').value);
 	
 	//call shared function to do all the AJAX
 	addItemToList(itemName);
@@ -120,11 +126,6 @@ function addItemToListHTTPResponse() {
 			   "<img " +
 			   "src='images/add.png' class='button' " +
 			   "onclick='addItemFromNewTextBox();'></img>";
-			document.getElementById('favoritesList').value='';
-			document.getElementById('newFavoriteCell').innerHTML = 
-			   "<img " +
-			   "src='images/add.png' class='button' " +
-			   "onclick='acceptFavorite();'></img>";
 		}
 	}
 }

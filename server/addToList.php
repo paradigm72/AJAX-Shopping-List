@@ -17,6 +17,10 @@
 	////////////////////////////
 	//get the item name
 	$itemName=$_POST['itemName'];
+	
+	//strip HTML characters
+	$itemName=strip_tags($itemName);
+	if (strlen($itemName)==0) { exit; }
 
 	//open file for appending (start after the last pre-existing line)
 	$filePointer = @fopen("../lists/1.txt", "a");	
