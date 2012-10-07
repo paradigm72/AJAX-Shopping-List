@@ -32,11 +32,10 @@
 <title>Shopping List</title>
 <html>
 
-<!--AJAX setup-->
+<!--AJAX setup  -now attached to window.onload in the javascript itself
 <script type="text/javascript">
-var myReq = getXMLHTTPRequest();
-retrieveShoppingList();
 </script>
+-->
 
 <body>
 

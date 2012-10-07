@@ -31,9 +31,9 @@ com.letxbe.ModifyList = function () {
 		var thePage = 'server/retrieveList.php';
 		myRand = parseInt(Math.random()*999999999);
 		var theURL = thePage + "?rand=" + myRand;
-		myReq.open("GET", theURL, true);
-		myReq.onreadystatechange = retrieveListHTTPResponse;
-		myReq.send(null);
+		com.letxbe.AJAXCore.Req().open("GET", theURL, true);
+		com.letxbe.AJAXCore.Req().onreadystatechange = retrieveListHTTPResponse;
+		com.letxbe.AJAXCore.Req().send(null);
 	}
 	
 	/////////////////////////////////
@@ -98,12 +98,12 @@ com.letxbe.ModifyList = function () {
 		myRand = parseInt(Math.random()*99999999);
 		var theURL = thePage + "?rand=" + myRand;
 		var itemNameParam = "itemName=" + itemName;
-		myReq.open("POST", theURL, true);
-		myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		myReq.setRequestHeader("Content-length", itemNameParam.length);
-		myReq.setRequestHeader("Connection", "close");
-		myReq.onreadystatechange = addItemToListHTTPResponse;
-		myReq.send(itemNameParam);
+		com.letxbe.AJAXCore.Req().open("POST", theURL, true);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-length", itemNameParam.length);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Connection", "close");
+		com.letxbe.AJAXCore.Req().onreadystatechange = addItemToListHTTPResponse;
+		com.letxbe.AJAXCore.Req().send(itemNameParam);
 	}	
 	
 	
@@ -120,12 +120,12 @@ com.letxbe.ModifyList = function () {
 		var theURL = thePage + "?rand=" + myRand;
 		var index=id.split("_");
 		var itemIndexParam = "itemIndex=" + index[1];
-		myReq.open("POST", theURL, true);
-		myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		myReq.setRequestHeader("Content-length", itemIndexParam.length);
-		myReq.setRequestHeader("Connection", "close");
-		myReq.onreadystatechange = markItemGottenHTTPResponse;
-		myReq.send(itemIndexParam);
+		com.letxbe.AJAXCore.Req().open("POST", theURL, true);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-length", itemIndexParam.length);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Connection", "close");
+		com.letxbe.AJAXCore.Req().onreadystatechange = markItemGottenHTTPResponse;
+		com.letxbe.AJAXCore.Req().send(itemIndexParam);
 	}	
 	
 	////////////////////////////////////////////
@@ -141,12 +141,12 @@ com.letxbe.ModifyList = function () {
 		var theURL = thePage + "?rand=" + myRand;
 		var index=id.split("_");
 		var itemIndexParam = "itemIndex=" + index[1];
-		myReq.open("POST", theURL, true);
-		myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		myReq.setRequestHeader("Content-length", itemIndexParam.length);
-		myReq.setRequestHeader("Connection", "close");
-		myReq.onreadystatechange = unMarkItemGottenHTTPResponse;
-		myReq.send(itemIndexParam);
+		com.letxbe.AJAXCore.Req().open("POST", theURL, true);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-length", itemIndexParam.length);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Connection", "close");
+		com.letxbe.AJAXCore.Req().onreadystatechange = unMarkItemGottenHTTPResponse;
+		com.letxbe.AJAXCore.Req().send(itemIndexParam);
 	}	
 	
 	//////////////////////////////////////////
@@ -162,12 +162,12 @@ com.letxbe.ModifyList = function () {
 		var theURL = thePage + "?rand=" + myRand;
 		var index=id.split("_");
 		var itemIndexParam = "itemIndex=" + index[1];
-		myReq.open("POST", theURL, true);
-		myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		myReq.setRequestHeader("Content-length", itemIndexParam.length);
-		myReq.setRequestHeader("Connection", "close");
-		myReq.onreadystatechange = removeItemHTTPResponse;
-		myReq.send(itemIndexParam);
+		com.letxbe.AJAXCore.Req().open("POST", theURL, true);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		com.letxbe.AJAXCore.Req().setRequestHeader("Content-length", itemIndexParam.length);
+		com.letxbe.AJAXCore.Req().setRequestHeader("Connection", "close");
+		com.letxbe.AJAXCore.Req().onreadystatechange = removeItemHTTPResponse;
+		com.letxbe.AJAXCore.Req().send(itemIndexParam);
 	}
 
 	
@@ -184,23 +184,31 @@ com.letxbe.ModifyList = function () {
 
 
 
+/*
 var oldonload = window.onload;
 if (typeof window.onload != 'function'){
-	window.onload = com.letxbe.ModifyList.RetrieveShoppingList();
+	window.onload = com.letxbe.ModifyList.RetrieveShoppingList;
 } else {
 	window.onload = function(){
 	oldonload();
-	com.letxbe.ModifyList.RetrieveShoppingList();
+	com.letxbe.ModifyList.RetrieveShoppingList;
 	}
+}
+*/
+
+window.onload = function () {
+	com.letxbe.AJAXCore.InitXMLHTTPRequest();
+	com.letxbe.ModifyList.RetrieveShoppingList();
+	com.letxbe.FavoritesMenu.Initialize();
 }
 
 
 
 function retrieveListHTTPResponse() {
-		if (myReq.readyState == 4) {
-			if (myReq.status == 200) {
-				var itemNamesList=myReq.responseXML.getElementsByTagName("itemName");
-				var gottenFlagsList=myReq.responseXML.getElementsByTagName("gotten");
+		if (com.letxbe.AJAXCore.Req().readyState == 4) {
+			if (com.letxbe.AJAXCore.Req().status == 200) {
+				var itemNamesList=com.letxbe.AJAXCore.Req().responseXML.getElementsByTagName("itemName");
+				var gottenFlagsList=com.letxbe.AJAXCore.Req().responseXML.getElementsByTagName("gotten");
 				document.getElementById('itemsTable').innerHTML='';
 				for (i=0; i<itemNamesList.length; i++)
 				{
@@ -212,8 +220,8 @@ function retrieveListHTTPResponse() {
 	}
 	
 function addItemToListHTTPResponse() {
-		if (myReq.readyState == 4) {
-			if (myReq.status == 200) {
+		if (com.letxbe.AJAXCore.Req().readyState == 4) {
+			if (com.letxbe.AJAXCore.Req().status == 200) {
 				retrieveShoppingList();
 				
 				//clear out the text box
@@ -229,24 +237,24 @@ function addItemToListHTTPResponse() {
 	}	
 
 function markItemGottenHTTPResponse() {
-		if (myReq.readyState == 4) {
-			if (myReq.status == 200) {
+		if (com.letxbe.AJAXCore.Req().readyState == 4) {
+			if (com.letxbe.AJAXCore.Req().status == 200) {
 				retrieveShoppingList();
 			}
 		}
 	}	
 
 function unMarkItemGottenHTTPResponse() {
-		if (myReq.readyState == 4) {
-			if (myReq.status == 200) {
+		if (com.letxbe.AJAXCore.Req().readyState == 4) {
+			if (com.letxbe.AJAXCore.Req().status == 200) {
 				retrieveShoppingList();
 			}
 		}
 	}	
 
 function removeItemHTTPResponse() {
-		if (myReq.readyState == 4) {
-			if (myReq.status == 200) {
+		if (com.letxbe.AJAXCore.Req().readyState == 4) {
+			if (com.letxbe.AJAXCore.Req().status == 200) {
 				retrieveShoppingList();
 			}
 		}	

@@ -92,7 +92,7 @@ com.letxbe.FavoritesMenu = function () {
 }();
 
 
-var oldonload = window.onload;
+/*var oldonload = window.onload;
 if (typeof window.onload != 'function'){
 	window.onload = com.letxbe.FavoritesMenu.Initialize();
 } else {
@@ -100,7 +100,7 @@ if (typeof window.onload != 'function'){
 	oldonload();
 	com.letxbe.FavoritesMenu.Initialize();
 	}
-}
+}*/
 
 
 var retrieveFavoritesHTTPResponse = function () {
