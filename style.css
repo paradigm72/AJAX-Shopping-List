@@ -18,7 +18,7 @@ body {
 }
 
 #header {
-	font-size: 2.2em;
+	font-size: 3.2em;
 	font-weight: bold;
 	background-color: #666;
 }
@@ -34,7 +34,7 @@ table.items {
 td {
 	border-bottom: 2px solid #888;
 	padding-top: 20px;
-	font-size: 1.4em;
+	font-size: 2.4em;
 }
 .gottenItem {
 	text-decoration: line-through;
@@ -44,28 +44,28 @@ td {
 /*general button size (for the inner <img> tag -
 overridden massively for mobile devices in the high res sheet)*/
 .button {
-	height: 32px;
-	width: 32px;
+	height: 64px;
+	width: 64px;
 }
 
 
 
 /*button: mark an item as gotten*/
 .markGotten {
-	width: 40px;
+	width: 70px;
 	padding-right: 8px;
 }
 
 
 /*button: unmark an item as gotten*/
 .unMarkGotten {
-	width: 40px;
+	width: 70px;
 	padding-right: 8px;
 }
 
 /*buttons: delete item */
 .delete {
-	width: 34px;
+	width: 70px;
 	padding-right: 2px;
 }
 
@@ -96,7 +96,7 @@ form {
 
 /*New text item row */
 .newItemMarkerIcon, .addText {
-	width: 34px;
+	width: 70px;
 	padding-top: 10px;
 	padding-right: 2px;
 	border-bottom: 0px;
