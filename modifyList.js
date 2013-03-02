@@ -51,7 +51,7 @@ function generateItemsTableRow(itemNamesList,index,gottenFlagsList)
 	
 	tdNameCell.setAttribute('id','nameCell_' + index);
 	tdNameCell.innerHTML="<span id='itemText_" + index +"'>" + 
-						 itemNamesList[index].childNodes[0].nodeValue + 
+						 decodeURIComponent(itemNamesList[index].childNodes[0].nodeValue) + 
 						 "</span>";
 	document.getElementById('itemText_'+index).setAttribute('onClick',
 				'enableTextBox('+index+',\''+ itemNamesList[index].childNodes[0].nodeValue + '\')');
@@ -83,7 +83,7 @@ function generateItemsTableRow(itemNamesList,index,gottenFlagsList)
 function addItemFromNewTextBox() {
 
 	//get the item name from the text box
-	var itemName = encodeURI(document.getElementById('newItem').value);
+	var itemName = encodeURIComponent(document.getElementById('newItem').value);
 	
 	//handle length zero
 	if (itemName.length == 0) { 

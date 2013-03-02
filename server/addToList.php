@@ -37,10 +37,12 @@
 	/// ADD ITEM TO THIS SHOPPING LIST 
 	////////////////////////////
 	//get the item name
-	$itemName=$_POST['itemName'];	
+	$itemName=$_POST['itemName'];
 	
-	//strip HTML characters
+	//strip HTML characters, encode to % tokens
 	$itemName=strip_tags($itemName);
+	$itemName=rawurlencode($itemName);
+	
 	if (strlen($itemName)==0) { exit; }
 
 	//open file for appending (start after the last pre-existing line)
