@@ -1,6 +1,5 @@
 Butter||1
 Gotten||0
 M%26M%27s||0
-Protein%20Bars||0
-Paul%27s%20vitamins||0
-Esther%27s%2080th%20card||0
+Protein||0
+Paul%27s%20vitamin%20bars||0

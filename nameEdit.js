@@ -57,7 +57,7 @@ function enableTextBox(itemNum,oldName)  {
 				 'onBlur=disableTextBox('+itemNum+',\''+oldName+'\')');
 				 
 	//pre-populate the text box with the old item name
-	document.getElementById('itemNameEdit_'+itemNum).value = oldName;
+	document.getElementById('itemNameEdit_'+itemNum).value = decodeURIComponent(oldName);
 	
 	//put focus into this text box so we can edit immediately
 	document.getElementById('itemNameEdit_'+itemNum).focus();
@@ -80,12 +80,13 @@ function nameEditTextBoxKeyDown(event,itemNum,oldName) {
 	if (event.keyCode != 13) return false;
 	
 	//retrieve the new item text from the input box's value
-	newItemName = document.getElementById('itemNameEdit_'+itemNum).value;
+	var newItemName = document.getElementById('itemNameEdit_'+itemNum).value;
 	
 	//revert to the read-only cell (with the new text - client-side early update)
 	disableTextBox(itemNum,newItemName);
 	
 	//go update the actual value in the list file
+	newItemName = encodeURIComponent(newItemName);
 	saveItemNameEdit(itemNum,newItemName);
 }
 

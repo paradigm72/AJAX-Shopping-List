@@ -9,12 +9,34 @@
 --------------------------->
 
 <?php	
+	//Need to turn off "magic quotes" (my hosting runs on PHP 5.3 or earlier, apparently)
+	if (get_magic_quotes_gpc()) {
+    $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
+    while (list($key, $val) = each($process)) {
+        foreach ($val as $k => $v) {
+            unset($process[$key][$k]);
+            if (is_array($v)) {
+                $process[$key][stripslashes($k)] = $v;
+                $process[] = &$process[$key][stripslashes($k)];
+            } else {
+                $process[$key][stripslashes($k)] = stripslashes($v);
+            }
+        }
+    }
+    unset($process);
+    }
+	
 	//$param = $_POST['param'];
 	//$paramArray = explode('|',$param);
 	//$itemNewName = $paramArray[0];
 	//$itemIndex = $paramArray[1];
 	$itemIndex = $_POST['itemIndex'];
 	$itemNewName = $_POST['itemNewName'];
+	
+	$itemNewName = rawurlencode($itemNewName);
+	
+	
+	
 	
 	$filePointer = @fopen("../lists/1.txt", "r");	
 	if (!$filePointer) {
