@@ -111,8 +111,6 @@ function addItemToList(itemName) {
 	var itemNameParam = "itemName=" + itemName;
 	myReq.open("POST", theURL, true);
 	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.setRequestHeader("Content-length", itemNameParam.length);
-	myReq.setRequestHeader("Connection", "close");
 	myReq.onreadystatechange = addItemToListHTTPResponse;
 	myReq.send(itemNameParam);
 }
@@ -147,8 +145,6 @@ function markItemGotten(id) {
 	var itemIndexParam = "itemIndex=" + index[1];
 	myReq.open("POST", theURL, true);
 	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.setRequestHeader("Content-length", itemIndexParam.length);
-	myReq.setRequestHeader("Connection", "close");
 	myReq.onreadystatechange = markItemGottenHTTPResponse;
 	myReq.send(itemIndexParam);
 }
@@ -177,8 +173,6 @@ function unMarkItemGotten(id) {
 	var itemIndexParam = "itemIndex=" + index[1];
 	myReq.open("POST", theURL, true);
 	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.setRequestHeader("Content-length", itemIndexParam.length);
-	myReq.setRequestHeader("Connection", "close");
 	myReq.onreadystatechange = unMarkItemGottenHTTPResponse;
 	myReq.send(itemIndexParam);
 }
@@ -207,8 +201,6 @@ function removeItemFromList(id) {
 	var itemIndexParam = "itemIndex=" + index[1];
 	myReq.open("POST", theURL, true);
 	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.setRequestHeader("Content-length", itemIndexParam.length);
-	myReq.setRequestHeader("Connection", "close");
 	myReq.onreadystatechange = removeItemHTTPResponse;
 	myReq.send(itemIndexParam);
 }

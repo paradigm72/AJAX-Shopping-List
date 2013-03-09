@@ -28,8 +28,6 @@ function saveItemNameEdit(itemIndex,newName) {
 	//send off the AJAX request
 	myReq.open("POST", theURL, true);
 	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.setRequestHeader("Content-length", param.length);
-	myReq.setRequestHeader("Connection", "close");
 	myReq.onreadystatechange = saveItemNameEditHTTPResponse();
 	myReq.send(param);
 }

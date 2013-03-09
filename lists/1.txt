@@ -1,5 +1,4 @@
 Butter||1
-Gotten||0
-M%26M%27s||0
+M%26M%27s%20candies||0
 Protein||0
-Paul%27s%20vitamin%20bars||0
+Vitamins%2C%20Pills%2C%20%26%20Thingsish||1
