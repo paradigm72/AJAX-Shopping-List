@@ -15,12 +15,7 @@
 // GET THE CURRENT LIST CONTENTS ///
 ////////////////////////////////////
 function retrieveShoppingList() {
-	var thePage = 'server/retrieveList.php';
-	myRand = parseInt(Math.random()*999999999);
-	var theURL = thePage + "?rand=" + myRand;
-	myReq.open("GET", theURL, true);
-	myReq.onreadystatechange = retrieveListHTTPResponse;
-	myReq.send(null);
+	doAjaxRequest('server/retrieveList.php',null,retrieveListHTTPResponse);
 }
 
 //callback for list rendering
@@ -104,15 +99,10 @@ function addItemFromNewTextBox() {
 
 
 function addItemToList(itemName) {
-	//send off the ajax request
-	var thePage = 'server/addToList.php';
-	myRand = parseInt(Math.random()*99999999);
-	var theURL = thePage + "?rand=" + myRand;
-	var itemNameParam = "itemName=" + itemName;
-	myReq.open("POST", theURL, true);
-	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.onreadystatechange = addItemToListHTTPResponse;
-	myReq.send(itemNameParam);
+	var paramDictionary = {
+		itemName: itemName
+	};
+	doAjaxRequest('server/addToList.php',paramDictionary,addItemToListHTTPResponse);
 }
 
 function addItemToListHTTPResponse() {
@@ -137,16 +127,15 @@ function markItemGotten(id) {
 	//first set up the loading icon
 	document.getElementById(id).innerHTML = "<img src='images/loadingIcon.gif' class='loadingSpinner'></img>";
 
-	//then send off the ajax request
-	var thePage = 'server/markItemGotten.php';
-	myRand = parseInt(Math.random()*99999999);
-	var theURL = thePage + "?rand=" + myRand;
+	//then grab the list element id #
 	var index=id.split("_");
-	var itemIndexParam = "itemIndex=" + index[1];
-	myReq.open("POST", theURL, true);
-	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.onreadystatechange = markItemGottenHTTPResponse;
-	myReq.send(itemIndexParam);
+	var itemIndexParam = index[1];	
+	var paramDictionary = {
+		itemIndex: itemIndexParam
+	};
+		
+	//then send the AJAX request
+	doAjaxRequest('server/markItemGotten.php',paramDictionary,markItemGottenHTTPResponse);
 }
 
 function markItemGottenHTTPResponse() {
@@ -164,17 +153,16 @@ function markItemGottenHTTPResponse() {
 function unMarkItemGotten(id) {
 	//first set up the loading icon
 	document.getElementById(id).innerHTML = "<img src='images/loadingIcon.gif' class='loadingSpinner'></img>";
-    
-	//then send off the ajax request
-	var thePage = 'server/unMarkItemGotten.php';
-	myRand = parseInt(Math.random()*99999999);
-	var theURL = thePage + "?rand=" + myRand;
+	
+	//then grab the list element id #
 	var index=id.split("_");
-	var itemIndexParam = "itemIndex=" + index[1];
-	myReq.open("POST", theURL, true);
-	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.onreadystatechange = unMarkItemGottenHTTPResponse;
-	myReq.send(itemIndexParam);
+	var itemIndexParam = index[1];	
+	var paramDictionary = {
+		itemIndex: itemIndexParam
+	};
+	
+	//then send the AJAX request
+	doAjaxRequest('server/unMarkItemGotten.php',paramDictionary,unMarkItemGottenHTTPResponse);
 }
 
 function unMarkItemGottenHTTPResponse() {
@@ -194,15 +182,12 @@ function removeItemFromList(id) {
 	document.getElementById(id).innerHTML = "<img src='images/loadingIcon.gif' class='loadingSpinner'></img>";
 
 	//then send off the ajax request
-	var thePage = 'server/removeItem.php';
-	myRand = parseInt(Math.random()*99999999);
-	var theURL = thePage + "?rand=" + myRand;
 	var index=id.split("_");
-	var itemIndexParam = "itemIndex=" + index[1];
-	myReq.open("POST", theURL, true);
-	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.onreadystatechange = removeItemHTTPResponse;
-	myReq.send(itemIndexParam);
+	var itemIndexParam = index[1];	
+	var paramDictionary = {
+		itemIndex: itemIndexParam,
+	};
+	doAjaxRequest('server/removeItem.php',paramDictionary,removeItemHTTPResponse);
 }
 
 function removeItemHTTPResponse() {

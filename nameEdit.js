@@ -14,22 +14,14 @@
 --- saveItemNameEdit                                     ----
 --- Save new name to server in background (no callback)  ----
 -----------------------------------------------------------*/
-function saveItemNameEdit(itemIndex,newName) {
+function saveItemNameEdit(index,newName) {
 	//no loading icon for this - client already updates immediately
 	
-	//construct the PHP URL
-	var thePage = 'server/editItemName.php';
-	myRand = parseInt(Math.random()*99999999);
-	var theURL = thePage + "?rand=" + myRand;
-	
-	//construct the POST param from item index and new name
-	var param = "itemIndex="+itemIndex+ "&" + "itemNewName="+newName;
-	
-	//send off the AJAX request
-	myReq.open("POST", theURL, true);
-	myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	myReq.onreadystatechange = saveItemNameEditHTTPResponse();
-	myReq.send(param);
+	var paramDictionary = {
+		itemIndex: index,
+		itemNewName: newName
+	};
+	doAjaxRequest('server/editItemName.php',paramDictionary,saveItemNameEditHTTPResponse);
 }
 
 /*-----------------------------------------------
