@@ -99,10 +99,7 @@ function addItemFromNewTextBox() {
 
 
 function addItemToList(itemName) {
-	var paramDictionary = {
-		itemName: itemName
-	};
-	doAjaxRequest('server/addToList.php',paramDictionary,addItemToListHTTPResponse);
+	doAjaxRequest('server/addToList.php',{ itemName: itemName},addItemToListHTTPResponse);
 }
 
 function addItemToListHTTPResponse() {
@@ -130,12 +127,9 @@ function markItemGotten(id) {
 	//then grab the list element id #
 	var index=id.split("_");
 	var itemIndexParam = index[1];	
-	var paramDictionary = {
-		itemIndex: itemIndexParam
-	};
 		
 	//then send the AJAX request
-	doAjaxRequest('server/markItemGotten.php',paramDictionary,markItemGottenHTTPResponse);
+	doAjaxRequest('server/markItemGotten.php',{ itemIndex: itemIndexParam },markItemGottenHTTPResponse);
 }
 
 function markItemGottenHTTPResponse() {
@@ -157,12 +151,9 @@ function unMarkItemGotten(id) {
 	//then grab the list element id #
 	var index=id.split("_");
 	var itemIndexParam = index[1];	
-	var paramDictionary = {
-		itemIndex: itemIndexParam
-	};
-	
+
 	//then send the AJAX request
-	doAjaxRequest('server/unMarkItemGotten.php',paramDictionary,unMarkItemGottenHTTPResponse);
+	doAjaxRequest('server/unMarkItemGotten.php',{ itemIndex: itemIndexParam },unMarkItemGottenHTTPResponse);
 }
 
 function unMarkItemGottenHTTPResponse() {
@@ -184,10 +175,7 @@ function removeItemFromList(id) {
 	//then send off the ajax request
 	var index=id.split("_");
 	var itemIndexParam = index[1];	
-	var paramDictionary = {
-		itemIndex: itemIndexParam,
-	};
-	doAjaxRequest('server/removeItem.php',paramDictionary,removeItemHTTPResponse);
+	doAjaxRequest('server/removeItem.php',{ itemIndex: itemIndexParam },removeItemHTTPResponse);
 }
 
 function removeItemHTTPResponse() {
