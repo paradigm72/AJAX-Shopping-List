@@ -17,10 +17,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-<script src="ajaxHelpers.js" type="text/javascript"></script>
-<script src="modifyList.js" type="text/javascript"></script>
-<script src="nameEdit.js" type="text/javascript"></script>
-<script src="favoritesMenu.js" type="text/javascript"></script>
+
 
 <!--Allow adding to the iOS home screen-->
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,6 +25,19 @@
 
 <!--Hide the top status bar if possible-->
 <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+<script src="ajaxHelpers.js" type="text/javascript"></script>
+<script src="modifyList.js" type="text/javascript"></script>
+<script src="nameEdit.js" type="text/javascript"></script>
+<script src="favoritesMenu.js" type="text/javascript"></script>
+
+<!-- Bootstrap/Angular-->
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+<script src="shoppingListNg.js"></script>
+
 
 <title>Shopping List</title>
 <html>
@@ -38,8 +48,22 @@ var myReq = getXMLHTTPRequest();
 retrieveShoppingList();
 </script>
 
-<body>
+<body ng-app>
 <div id="header" onclick="retrieveShoppingList();">Shopping List</div>
+
+
+<div ng-controller="ShoppingListCtrl">
+<table class="items">
+	<tr ng-repeat="item in shoppingList">
+		<td class="item-{{item.isGotten}}">{{item.text}}</td>
+		<td class="gottenButton-{{item.isGotten}}">
+			<img src='images/toggleGotten-{{item.isGotten}}.png' class='button'>
+		</td>
+		<td class="delete">
+			<img src='images/remove.png' class='button'>
+		</td>
+	</td>
+</ul>
 
 
 <table id="itemsTable" class="items">
