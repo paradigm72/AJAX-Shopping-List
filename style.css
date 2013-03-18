@@ -36,7 +36,7 @@ td {
 	padding-top: 20px;
 	font-size: 2.4em;
 }
-.gottenItem, .item-gotten {
+.gottenItem, .item-true {
 	text-decoration: line-through;
 	color: #777;
 }
@@ -51,17 +51,47 @@ overridden massively for mobile devices in the high res sheet)*/
 
 
 /*button: mark an item as gotten*/
-.markGotten, .gottenButton-notGotten {
+.markGotten, .gottenButton-false {
 	width: 70px;
 	padding-right: 8px;
 }
 
 
 /*button: unmark an item as gotten*/
-.unMarkGotten, .gottenButton-gotten {
+.unMarkGotten, .gottenButton-true {
 	width: 70px;
 	padding-right: 8px;
 }
+
+
+/*checkbox: mark an item as gotten*/
+.gottenCheckbox {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-o-appearance: none;
+}
+
+
+.gottenCheckbox:before { 
+	content: "";
+	display: inline-block;
+	width: 70px;
+	height: 70px; 
+	background: url('images/gotten.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.gottenCheckbox:checked:before {
+	content: '';
+	background: url('images/undo.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}​
+
+/*For some reason, the above causes the next selector to fail...*/
+null {}
+
 
 /*buttons: delete item */
 .delete {
@@ -70,12 +100,15 @@ overridden massively for mobile devices in the high res sheet)*/
 }
 
 
+
 /*Favorites row*/
 .favoritesMarkerIcon, .addFavorite {
 	width: 34px;
 	padding-top: 10px;
 	padding-right: 2px;
 }
+
+
 .favoritesDropDown {
 	padding-top: 10px;
 	padding-right: 10px;
@@ -90,8 +123,6 @@ overridden massively for mobile devices in the high res sheet)*/
 form {
 	margin-bottom: 0em;
 }
-
-
 
 
 /*New text item row */
@@ -111,6 +142,10 @@ form {
 	margin-right: 5px;
 	font-size: 1em;
 }
+
+
+
+
 
 
 
