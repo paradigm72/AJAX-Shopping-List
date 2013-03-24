@@ -36,6 +36,7 @@ td {
 	padding-top: 20px;
 	font-size: 2.4em;
 }
+
 .gottenItem, .item-true {
 	text-decoration: line-through;
 	color: #777;
@@ -50,18 +51,12 @@ overridden massively for mobile devices in the high res sheet)*/
 
 
 
-/*button: mark an item as gotten*/
-.markGotten, .gottenButton-false {
+/*button: mark/unmark an item as gotten*/
+.markGotten, .gottenButton-false, .gottenButton-true {
 	width: 70px;
 	padding-right: 8px;
 }
 
-
-/*button: unmark an item as gotten*/
-.unMarkGotten, .gottenButton-true {
-	width: 70px;
-	padding-right: 8px;
-}
 
 
 /*checkbox: mark an item as gotten*/

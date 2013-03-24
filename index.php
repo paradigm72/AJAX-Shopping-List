@@ -42,8 +42,8 @@
 
 <!--AJAX setup-->
 <script type="text/javascript">
-var myReq = getXMLHTTPRequest();
-retrieveShoppingList();
+//var myReq = getXMLHTTPRequest();
+//retrieveShoppingList();
 </script>
 
 <body ng-app>
@@ -51,12 +51,13 @@ retrieveShoppingList();
 
 
 <div ng-controller="ShoppingListCtrl">
+<input type='button' ng-click="retrieveList()" value="Retrieve List">
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
 		<td class="item-{{item.isGotten}}">
 			{{item.text}}			
 		</td>
-		<td class="gottenButton-{{item.isGotten}}">
+		<td class="markGotten gottenButton-{{item.isGotten}}">
 			<input type="checkbox" ng-model="item.isGotten" class="gottenCheckbox">
 		</td>
 		<td class='delete' ng-click="removeItem($index)">

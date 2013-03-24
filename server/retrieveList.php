@@ -21,25 +21,29 @@
 		exit;
 	}
 	
-	header('Content-Type: text/xml');
-	echo "<?xml version=\"1.0\" ?>";
-	echo "<list>";
+	header('Content-Type: text/json');
+	/*echo "<?xml version=\"1.0\" ?>";
+	echo "<list>";*/
+	echo "[";
 	
 	while (!feof($filePointer)) {
 		$rawLine = fgets($filePointer, 999);
 		$lineArray = explode('|', $rawLine);
 		
 		if (strlen($lineArray[0])>0) {
-			echo "<listItem>";
-			echo "<itemName>".$lineArray[0]."</itemName>";
+			$responseStr = $responseStr."{ ";
+			$responseStr = $responseStr."\"text\": \"".$lineArray[0]."\", ";
 			if ($lineArray[2]==1) {
-				echo "<gotten>1</gotten>";
+				$responseStr = $responseStr."\"isGotten\": \1\"";
 			}
 			else {
-				echo "<gotten>0</gotten>";
+				$responseStr = $responseStr."\"isGotten\": \"0\"";
 			}			
-			echo "</listItem>";
+			$responseStr = $responseStr."},";
 		}
 	}
-	echo "</list>";
+	$responseStr = substr($responseStr, 0, -1);
+	/*echo "</list>";*/
+	echo $responseStr;
+	echo "]";
 ?>
