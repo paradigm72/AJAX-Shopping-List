@@ -14,10 +14,8 @@ function ShoppingListCtrl($scope, $http) {
 		$scope.shoppingList.push(newItem);
 		$scope.newItemText = '';
 		
-		//send new item to the server
-		$http.post('server/addToList.php', 'itemName=' + newItem.text).success(function() {
-			alert("Added " + newItem.text);
-		})
+		//send new item to the server (not yet functional)
+		$http.post('server/addToList.php', 'itemName=' + newItem.text).success(function() {})
 	};
 	
 	$scope.removeItem = function(index) {
