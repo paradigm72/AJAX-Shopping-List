@@ -68,7 +68,7 @@ overridden massively for mobile devices in the high res sheet)*/
 
 
 .gottenCheckbox:before { 
-	content: "";
+	content: '';
 	display: inline-block;
 	width: 70px;
 	height: 70px; 

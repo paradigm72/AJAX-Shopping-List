@@ -39,8 +39,7 @@
 <div id="header" onclick="retrieveShoppingList();">Shopping List</div>
 
 
-<div ng-controller="ShoppingListCtrl">
-<input type='button' ng-click="retrieveList()" value="Retrieve List">
+<div ng-controller="ShoppingListCtrl" data-ng-init="retrieveList()">
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
 		<td class="item-{{item.isGotten}}">
