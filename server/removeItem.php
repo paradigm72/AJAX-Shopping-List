@@ -1,15 +1,14 @@
-<!-----------------------
---- Paul Romine
---- (c) 2011
----	NAME: 		removeItem.php
----	PURPOSE: 	Server code to remove an item from the list.
----
---- LAST REVISED: 6/12/11
---------------------------->
-
-
 <?php
-	$itemIndex=$_POST['itemIndex'];
+	//FirePHP debugging
+	require_once('FirePHPCore/FirePHP.class.php');
+	ob_start();
+	$firephp = FirePHP::getInstance(true);
+
+	//get the item index
+	$POSTDATA = file_get_contents("php://input");
+	$POSTDATA = json_decode($POSTDATA, true);
+	$itemIndex = $POSTDATA['itemIndex'];
+	
 	$tempFileContents='';
 	
 	$filePointer = @fopen("../lists/1.txt", "r");	//"r" is for read-only, starting at top

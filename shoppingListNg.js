@@ -17,17 +17,26 @@ function ShoppingListCtrl($scope, $http) {
 			isGotten: false
 		};
 		
+		//add new item on the client
 		$scope.shoppingList.push(newItem);
 		$scope.newItemText = '';
 		
-		//send new item to the server (not yet functional)
+		//send new item to the server
 		var postData = { 'itemName': newItem.text };
 		$http.post('server/addToList.php', postData).success(function() {
-				//alert("Successfully called the post!");
 		    });
 	};
 	
 	$scope.removeItem = function(index) {
+		var removeData = {
+			'itemIndex': index
+		};
+
+		//remove item on the client
 		$scope.shoppingList.splice(index, 1);
+
+		//remove item from the server
+		$http.post('server/removeItem.php', removeData).success(function() {
+			});
 	}
 }
