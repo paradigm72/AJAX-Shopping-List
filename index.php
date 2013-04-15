@@ -26,12 +26,6 @@
 <!--Hide the top status bar if possible-->
 <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-
-<script src="ajaxHelpers.js" type="text/javascript"></script>
-<script src="modifyList.js" type="text/javascript"></script>
-<script src="nameEdit.js" type="text/javascript"></script>
-<script src="favoritesMenu.js" type="text/javascript"></script>
-
 <!-- Angular-->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
 <script src="shoppingListNg.js"></script>
@@ -65,13 +59,13 @@
 <form ng-submit='addNewItem()'>
 	<tr id='inputRow'>
 		<td class='newItemMarkerIcon'>
-			<img src='images\edit.png' class='button'>
+			<img src='images/edit.png' class='button'>
 		</td>
 		<td class='newText'>
 			<input type="text" ng-model="newItemText" placeholder="Add new item..." id='newItem'>
 		</td>
 		<td class='addText' id='newItemCell'>
-			<img src='images\add.png' class='button'>
+			<img src='images/add.png' class='button'>
 		</td>
 	</tr>
 </form>

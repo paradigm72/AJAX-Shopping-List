@@ -2,6 +2,12 @@ function ShoppingListCtrl($scope, $http) {
 	$scope.retrieveList = function() {
 		$http.get('server/retrieveList.php').success(function(data) {
 			$scope.shoppingList = data;
+
+			//store decoded data in $scope.shoppingList
+			for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
+				$scope.shoppingList[i].text = 
+					decodeURIComponent($scope.shoppingList[i].text);
+			};
 		});
 	};
 	
@@ -15,7 +21,10 @@ function ShoppingListCtrl($scope, $http) {
 		$scope.newItemText = '';
 		
 		//send new item to the server (not yet functional)
-		$http.post('server/addToList.php', 'itemName=' + newItem.text).success(function() {})
+		var postData = { 'itemName': newItem.text };
+		$http.post('server/addToList.php', postData).success(function() {
+				//alert("Successfully called the post!");
+		    });
 	};
 	
 	$scope.removeItem = function(index) {

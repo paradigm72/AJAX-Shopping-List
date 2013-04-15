@@ -1,21 +1,13 @@
-<!-----------------------
---- Paul Romine
---- (c) 2011
----	NAME: 		addToList.php
----	PURPOSE: 	Server code to add a new item to the list - string passed in
----				through POST.
----
---- CREATED: 6/12/11
----
--  *pmr 10/16/11 add code to store the most-frequently-added items
--  *pmr 08/18/12 use a more sane delimiter
---------------------------->
-
 <?php
 
 	//error_reporting(E_ALL | E_STRICT);
 	//ini_set('display_errors', 'On');
 	
+	//FirePHP debugging
+	require_once('FirePHPCore/FirePHP.class.php');
+	ob_start();
+	$firephp = FirePHP::getInstance(true);
+
 	//Need to turn off "magic quotes" (my hosting runs on PHP 5.3 or earlier, apparently)
 	if (get_magic_quotes_gpc()) {
     $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
@@ -37,7 +29,11 @@
 	/// ADD ITEM TO THIS SHOPPING LIST 
 	////////////////////////////
 	//get the item name
-	$itemName=$_POST['itemName'];
+	$POSTDATA = file_get_contents("php://input");
+	$POSTDATA = json_decode($POSTDATA, true);
+	$itemName = $POSTDATA['itemName'];
+
+	$firephp->log($itemName, "itemName");
 	
 	//strip HTML characters, encode to % tokens
 	$itemName=strip_tags($itemName);
