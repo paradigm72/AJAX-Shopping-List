@@ -7,14 +7,16 @@ function ShoppingListCtrl($scope, $http) {
 			for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
 				$scope.shoppingList[i].text = 
 					decodeURIComponent($scope.shoppingList[i].text);
-			};
+                $scope.shoppingList[i].beingEdited = false;
+			}
 		});
 	};
 	
 	$scope.addNewItem = function() {
 		var newItem = {
 			text: $scope.newItemText,
-			isGotten: false
+			isGotten: false,
+            beingEdited: false
 		};
 		
 		//add new item on the client

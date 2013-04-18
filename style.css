@@ -14,7 +14,7 @@
 body {
 	background-color: #444;
 	color: #EEEEEE;
-	font-family: Calibri, Verdana, Arial;
+	font-family: Calibri, Verdana, Arial, sans-serif;
 }
 
 #header {
@@ -132,10 +132,19 @@ form {
 	padding-right: 10px;
 	border-bottom: 0px;
 }
-#newItem {
+input {
 	width: 100%;
 	margin-right: 5px;
 	font-size: 1em;
+}
+
+input.modifyName-false {
+    visibility: hidden;
+    height: 0px;
+}
+
+input.modifyName-true {
+    visibility: visible;
 }
 
 

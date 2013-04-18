@@ -27,7 +27,7 @@
 <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 <!-- Angular-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+<script src="angular.js"></script>
 <script src="shoppingListNg.js"></script>
 
 
@@ -43,7 +43,9 @@
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
 		<td class="item-{{item.isGotten}}">
-			{{item.text}}			
+			<span class="staticName-{{item.beingEdited}}">{{item.text}}</span>
+            <input type="text" ng-model="modifyItemText" placeholder="{{item.text}}"
+                   class="modifyName-{{item.beingEdited}}">
 		</td>
 		<td class="markGotten gottenButton-{{item.isGotten}}">
 			<input type="checkbox" ng-model="item.isGotten" class="gottenCheckbox">
