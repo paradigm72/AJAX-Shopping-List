@@ -15,13 +15,11 @@
     }
     unset($process);
     }
-	
-	//$param = $_POST['param'];
-	//$paramArray = explode('|',$param);
-	//$itemNewName = $paramArray[0];
-	//$itemIndex = $paramArray[1];
-	$itemIndex = $_POST['itemIndex'];
-	$itemNewName = $_POST['itemNewName'];
+
+    $POSTDATA = file_get_contents("php://input");
+    $POSTDATA = json_decode($POSTDATA, true);
+	$itemIndex = $POSTDATA['itemIndex'];
+	$itemNewName = $POSTDATA['itemNewName'];
 	
 	$itemNewName = rawurlencode($itemNewName);
 	

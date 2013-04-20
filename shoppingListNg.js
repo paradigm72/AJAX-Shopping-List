@@ -40,17 +40,20 @@ function ShoppingListCtrl($scope, $http) {
 		//remove item from the server
 		$http.post('server/removeItem.php', removeData).success(function() {
 			});
-	}
+	};
 
     $scope.startModifyingName = function(index) {
         $scope.shoppingList[index].beingEdited = true;
-        //$scope.modifyItemText = $scope.shoppingList[index].text;
-    }
+    };
 
     $scope.stopModifyingName = function(index) {
-        //$scope.shoppingList[index].text = $scope.modifyItemText;
         $scope.shoppingList[index].beingEdited = false;
 
-
-    }
+        var editData = {
+            'itemIndex': index,
+            'itemNewName': $scope.shoppingList[index].text
+        };
+        $http.post('server/editItemName.php', editData).success(function () {
+            });
+    };
 }
