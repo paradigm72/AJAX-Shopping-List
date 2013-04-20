@@ -42,10 +42,12 @@
 <div ng-controller="ShoppingListCtrl" data-ng-init="retrieveList()">
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
-		<td class="item-{{item.isGotten}}">
-			<span class="staticName-{{item.beingEdited}}">{{item.text}}</span>
-            <input type="text" ng-model="modifyItemText" placeholder="{{item.text}}"
+		<td class="item-{{item.isGotten}}" ng-click="startModifyingName($index)">
+			<div class="staticName-{{item.beingEdited}}">{{item.text}}</div>
+            <form ng-submit="stopModifyingName($index)">
+                <input type="text" ng-model="item.text" placeholder="{{item.text}}"
                    class="modifyName-{{item.beingEdited}}">
+            </form>
 		</td>
 		<td class="markGotten gottenButton-{{item.isGotten}}">
 			<input type="checkbox" ng-model="item.isGotten" class="gottenCheckbox">

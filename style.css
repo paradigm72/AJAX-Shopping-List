@@ -147,6 +147,11 @@ input.modifyName-true {
     visibility: visible;
 }
 
+.staticName-true {
+    visibility: hidden;
+    height: 0px;
+}
+
 
 
 

@@ -1,14 +1,4 @@
-<!-----------------------
---- Paul Romine
---- (c) 2011
----	NAME: 		editItemName.php
----	PURPOSE: 	Server code to change the name of an existing item in the list
----				New name and index passed in through POST.
----
-- LAST REVISED: 7/30/11
---------------------------->
-
-<?php	
+<?php
 	//Need to turn off "magic quotes" (my hosting runs on PHP 5.3 or earlier, apparently)
 	if (get_magic_quotes_gpc()) {
     $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
