@@ -42,6 +42,19 @@ function ShoppingListCtrl($scope, $http) {
 			});
 	};
 
+    $scope.saveGottenUpdate = function(index) {
+        var gottenData = {
+            'itemIndex': index
+        };
+        //item state is already updated, so save based on the *new* state
+        if ($scope.shoppingList[index].isGotten === true) {
+            $http.post('server/markItemGotten.php', gottenData).success(function() {});
+        }
+        else {
+            $http.post('server/unMarkItemGotten.php', gottenData).success(function() {});
+        }
+    }
+
     $scope.startModifyingName = function(index) {
         $scope.shoppingList[index].beingEdited = true;
     };

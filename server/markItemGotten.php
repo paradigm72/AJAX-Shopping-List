@@ -1,15 +1,7 @@
-<!-----------------------
---- Paul Romine
---- (c) 2011
----	NAME: 		markItemGotten.php
----	PURPOSE: 	Server code to strike through an item (meaning we retrieved it this
----             shopping trip).
----
-- LAST REVISED: 6/12/11
---------------------------->
-
 <?php
-	$itemIndex=$_POST['itemIndex'];
+    $POSTDATA = file_get_contents("php://input");
+    $POSTDATA = json_decode($POSTDATA, true);
+    $itemIndex = $POSTDATA['itemIndex'];
 	
 	$filePointer = @fopen("../lists/1.txt", "r+");	
 	if (!$filePointer) {
@@ -28,8 +20,8 @@
 	$rawLine = fgets($filePointer, 999);
 	$lineArray = explode('|', $rawLine);
 	$itemName = $lineArray[0];
-	//create the new version of this line: name,,1  <--- 1 means 'gotten'
-	$finishedLine = $itemName."||1\n";
+	//create the new version of this line: name,,true  <--- true means 'gotten'
+	$finishedLine = $itemName."||true\n";
 	//append it to the lines we looped over
 	$tempFileContents = $tempFileContents.$finishedLine;
 	

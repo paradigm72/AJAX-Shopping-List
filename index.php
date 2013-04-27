@@ -50,7 +50,8 @@
             </form>
 		</td>
 		<td class="markGotten gottenButton-{{item.isGotten}}">
-			<input type="checkbox" ng-model="item.isGotten" class="gottenCheckbox">
+			<input type="checkbox" ng-model="item.isGotten"
+                   ng-click="saveGottenUpdate($index)" class="gottenCheckbox">
 		</td>
 		<td class='delete' ng-click="removeItem($index)">
 			<img src='images/remove.png' class='button'>

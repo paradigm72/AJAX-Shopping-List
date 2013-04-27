@@ -1,14 +1,7 @@
-<!-----------------------
---- Paul Romine
---- (c) 2012
----	NAME: 		unMarkItemGotten.php
----	PURPOSE: 	Server code to unstrike through an item (meaning we need it again)
--
-- LAST REVISED: 4/23/12  (copied from markItemGotten.php and modified)
---------------------------->
-
 <?php
-	$itemIndex=$_POST['itemIndex'];
+    $POSTDATA = file_get_contents("php://input");
+    $POSTDATA = json_decode($POSTDATA, true);
+    $itemIndex = $POSTDATA['itemIndex'];
 	
 	$filePointer = @fopen("../lists/1.txt", "r+");	
 	if (!$filePointer) {
@@ -27,8 +20,8 @@
 	$rawLine = fgets($filePointer, 999);
 	$lineArray = explode('|', $rawLine);
 	$itemName = $lineArray[0];
-	//create the new version of this line: name,,0  <--- 0 means 'not yet gotten'
-	$finishedLine = $itemName."||0\n";
+	//create the new version of this line: name,,false  <--- false means 'not yet gotten'
+	$finishedLine = $itemName."||false\n";
 	//append it to the lines we looped over
 	$tempFileContents = $tempFileContents.$finishedLine;
 	

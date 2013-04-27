@@ -33,12 +33,8 @@
 		if (strlen($lineArray[0])>0) {
 			$responseStr = $responseStr."{ ";
 			$responseStr = $responseStr."\"text\": \"".$lineArray[0]."\", ";
-			if ($lineArray[2]==1) {
-				$responseStr = $responseStr."\"isGotten\": \1\"";
-			}
-			else {
-				$responseStr = $responseStr."\"isGotten\": \"0\"";
-			}			
+            $responseStr = $responseStr."\"isGotten\": \"".
+                                        substr($lineArray[2],0,-1)."\"";
 			$responseStr = $responseStr."},";
 		}
 	}
