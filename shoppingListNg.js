@@ -10,7 +10,23 @@ function ShoppingListCtrl($scope, $http) {
                 $scope.shoppingList[i].beingEdited = false;
 			}
 		});
-	};
+
+        /*$scope.shoppingList = [{ "text": "V8%20fusion", "isGotten": true},
+            { "text": "Evie%27s%20whole%20milk%20container", "isGotten": false},
+            { "text": "Evie%27s%20baby%20food", "isGotten": false},
+            { "text": "M%26Ms%20and%20other%20candies", "isGotten": true},
+            { "text": "Mother%27s%20and%20Father%27s%20day%20cards", "isGotten": false}];
+
+
+        //store decoded data in $scope.shoppingList
+        for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
+            $scope.shoppingList[i].text =
+                decodeURIComponent($scope.shoppingList[i].text);
+            $scope.shoppingList[i].beingEdited = false;
+        }*/
+
+
+    };
 	
 	$scope.addNewItem = function() {
 		var newItem = {

@@ -30,11 +30,11 @@
 		$rawLine = fgets($filePointer, 999);
 		$lineArray = explode('|', $rawLine);
 		
-		if (strlen($lineArray[0])>0) {
+		if ((strlen($lineArray[0])>0)&&(strlen($lineArray[2])>0)) {
 			$responseStr = $responseStr."{ ";
 			$responseStr = $responseStr."\"text\": \"".$lineArray[0]."\", ";
-            $responseStr = $responseStr."\"isGotten\": \"".
-                                        substr($lineArray[2],0,-1)."\"";
+            $responseStr = $responseStr."\"isGotten\": ".
+                                        substr($lineArray[2],0,-1);
 			$responseStr = $responseStr."},";
 		}
 	}
