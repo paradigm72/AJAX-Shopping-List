@@ -21,6 +21,7 @@
 	$lineArray = explode('|', $rawLine);
 	$itemName = $lineArray[0];
 	//create the new version of this line: name,,true  <--- true means 'gotten'
+    //TODO: there's some subtle bug here with going from "false" to "true" - appends extra newlines
 	$finishedLine = $itemName."||true\n";
 	//append it to the lines we looped over
 	$tempFileContents = $tempFileContents.$finishedLine;

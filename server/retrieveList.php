@@ -1,20 +1,4 @@
 <?php
-/**
-* Paul Romine
-* (c) 2011
-*	NAME: 		retrieveList.php
-*	PURPOSE: 	Server code to get the shopping list contents and fill into the list.
-*             Generates XML of the form:
-*					list
-*						listItem
-*							itemName Apples /itemName
-*							gotten 0 /gotten
-*						/listItem
-*					/list
-*
-* LAST REVISED: 6/12/11
-*/
-
 	$filePointer = @fopen("../lists/1.txt", "rw");
 	
 	if (!$filePointer) {

@@ -1,15 +1,3 @@
-<!--
-- Paul Romine
-- (c) 2011
--	NAME: 		index.php
--	PURPOSE: 	landing page for the shopping list app
--
-- *pmr 10/2/11 - change sizing of 'add' button now that the .png is sized correctly
-    *pmr 2/25/12 - updated img sizing to be done in css, so we can override for iPhone
-                 - bump Favorites functionality due to non-functioning on iPhone or anywhere
--->
-
-
 <link rel="stylesheet" type="text/css" href="style.css" />
 
 <!-- iPhone-specific stuff: -->
