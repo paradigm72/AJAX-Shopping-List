@@ -20,12 +20,14 @@
 	$rawLine = fgets($filePointer, 999);
 	$lineArray = explode('|', $rawLine);
 	$itemName = $lineArray[0];
+
 	//create the new version of this line: name,,true  <--- true means 'gotten'
-    //TODO: there's some subtle bug here with going from "false" to "true" - appends extra newlines
-	$finishedLine = $itemName."||true\n";
+    //note: massive cheat here: the extra space prevents the file pointer from desyncing when
+    //the line length changes (false->true). It's ignored by the JSON parser.
+	$finishedLine = $itemName."||true \n";
 	//append it to the lines we looped over
 	$tempFileContents = $tempFileContents.$finishedLine;
-	
+
 	//now loop freely until the end of the file, appending those as well
 	while (!feof($filePointer)) {
 		$rawLine = fgets($filePointer, 999);

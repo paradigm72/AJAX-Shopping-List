@@ -1,10 +1,3 @@
-V8%20fusion||true
-Test%20third%20new||true
-protein%20powder||true
-First%20new||true
-Second%20new||true
-
-
-
-
-
+V8%20fusion||false
+First%20new%20stuff||true 
+Second%20new||false
