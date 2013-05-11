@@ -1,3 +1,6 @@
 V8%20fusion||false
-First%20new%20stuff||true 
-Second%20new||false
+Second||true 
+Protein%20bar||false
+V8%20fusion||true 
+Birthday%20card||true 
+M%26M%20candies||true 

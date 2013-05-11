@@ -31,15 +31,19 @@
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
 		<td class="item-{{item.isGotten}}" ng-click="startModifyingName($index)">
-			<div class="staticName-{{item.beingEdited}}">{{item.text}}</div>
+			<div ng-hide="item.beingEdited">{{item.text}}</div>
             <form ng-submit="stopModifyingName($index)">
                 <input type="text" ng-model="item.text" placeholder="{{item.text}}"
-                   class="modifyName-{{item.beingEdited}}">
+                   ng-show="item.beingEdited">
             </form>
 		</td>
-		<td class="markGotten gottenButton-{{item.isGotten}}">
-			<input type="checkbox" ng-model="item.isGotten"
-                   ng-click="saveGottenUpdate($index)" class="gottenCheckbox">
+		<td class="markGotten" ng-click="toggleGotten($index)">
+            <img ng-show='item.isGotten' src='images/undo.png' class='button'>
+            <img ng-show='!item.isGotten' src='images/gotten.png' class='button'>
+
+            <input type="checkbox" ng-model="item.isGotten"
+                   ng-checked="item.isGotten"
+                   ng-show="false">
 		</td>
 		<td class='delete' ng-click="removeItem($index)">
 			<img src='images/remove.png' class='button'>
@@ -54,7 +58,8 @@
 			<img src='images/edit.png' class='button'>
 		</td>
 		<td class='newText'>
-			<input type="text" ng-model="newItemText" placeholder="Add new item..." id='newItem'>
+			<input type="text" ng-model="newItemText"
+                   placeholder="Add new item..." id='newItem'>
 		</td>
 		<td class='addText' id='newItemCell'>
 			<img src='images/add.png' class='button'>

@@ -42,7 +42,10 @@ function ShoppingListCtrl($scope, $http) {
 			});
 	};
 
-    $scope.saveGottenUpdate = function(index) {
+    $scope.toggleGotten = function(index) {
+        //toggle the value in the model
+        $scope.shoppingList[index].isGotten = !$scope.shoppingList[index].isGotten;
+
         var gottenData = {
             'itemIndex': index
         };
@@ -53,7 +56,7 @@ function ShoppingListCtrl($scope, $http) {
         else {
             $http.post('server/unMarkItemGotten.php', gottenData).success(function() {});
         }
-    }
+    };
 
     $scope.startModifyingName = function(index) {
         $scope.shoppingList[index].beingEdited = true;

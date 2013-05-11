@@ -52,66 +52,16 @@ overridden massively for mobile devices in the high res sheet)*/
 
 
 /*button: mark/unmark an item as gotten*/
-.markGotten, .gottenButton-false, .gottenButton-true {
+.markGotten {
 	width: 70px;
 	padding-right: 8px;
 }
-
-
-
-/*checkbox: mark an item as gotten*/
-.gottenCheckbox {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	-o-appearance: none;
-}
-
-
-.gottenCheckbox:before { 
-	content: '';
-	display: inline-block;
-	width: 70px;
-	height: 70px; 
-	background: url('images/gotten.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-}
-
-.gottenCheckbox:checked:before {
-	content: '';
-	background: url('images/undo.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-}​
-
-/*For some reason, the above causes the next selector to fail...*/
-null {}
 
 
 /*buttons: delete item */
 .delete {
 	width: 70px;
 	padding-right: 2px;
-}
-
-
-
-/*Favorites row*/
-.favoritesMarkerIcon, .addFavorite {
-	width: 34px;
-	padding-top: 10px;
-	padding-right: 2px;
-}
-
-
-.favoritesDropDown {
-	padding-top: 10px;
-	padding-right: 10px;
-}
-#favoritesList {
-	width: 100%;
-	margin-right: 5px;
-	font-size: 1em;
 }
 
 /*overrides a default in webkit that puts huge space underneath a form*/
@@ -132,24 +82,12 @@ form {
 	padding-right: 10px;
 	border-bottom: 0px;
 }
+
 input {
 	width: 100%;
 	margin-right: 5px;
-	font-size: 1em;
-}
-
-input.modifyName-false {
-    visibility: hidden;
-    height: 0px;
-}
-
-input.modifyName-true {
-    visibility: visible;
-}
-
-.staticName-true {
-    visibility: hidden;
-    height: 0px;
+	font-size: 0.8em;
+    height: 1.2em;
 }
 
 
