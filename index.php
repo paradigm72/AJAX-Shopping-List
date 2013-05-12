@@ -28,7 +28,8 @@
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
         <td>
-            <itemname original-name='item.text' is-gotten='item.isGotten'>
+            <itemname original-name='item.text' is-gotten='item.isGotten'
+                      item-index='$index' save-func="saveNameEdit(index, newName)">
             </itemname>
         </td>
 		<td class="button" ng-click="toggleGotten($index)">

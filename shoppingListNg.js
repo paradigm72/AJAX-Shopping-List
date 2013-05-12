@@ -3,7 +3,9 @@ var shoppingListModule = angular.module('shoppingList', []);
 shoppingListModule.controller('ListControl', function($scope, $http) {
 	$scope.retrieveList = function() {
 		$http.get('server/retrieveList.php').success(function(data) {
-			$scope.shoppingList = data;
+			$scope.shoppingList = [];
+
+            $scope.shoppingList = data;
 
 			//store decoded data in $scope.shoppingList
 			for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
@@ -28,7 +30,7 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
 		//send new item to the server
 		var postData = { 'itemName': newItem.text };
 		$http.post('server/addToList.php', postData).success(function() {
-		    $scope.retrieveList();
+		    //$scope.retrieveList();
         });
 	};
 	
@@ -42,7 +44,7 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
 
 		//remove item from the server
 		$http.post('server/removeItem.php', removeData).success(function() {
-            $scope.retrieveList();
+            //$scope.retrieveList();
         });
 	};
 
@@ -56,31 +58,24 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
         //item state is already updated, so save based on the *new* state
         if ($scope.shoppingList[index].isGotten === true) {
             $http.post('server/markItemGotten.php', gottenData).success(function() {
-                $scope.retrieveList();
+                //$scope.retrieveList();
             });
         }
         else {
             $http.post('server/unMarkItemGotten.php', gottenData).success(function() {
-                $scope.retrieveList();
+                //$scope.retrieveList();
             });
         }
     };
 
-    $scope.startModifyingName = function(index, element) {
-        $scope.shoppingList[index].beingEdited = true;
-        //TODO: focus on the text box (maybe a directive?) element[0].focus();
-
-    };
-
-    $scope.stopModifyingName = function(index) {
-        $scope.shoppingList[index].beingEdited = false;
+    $scope.saveNameEdit = function(index, newName) {
+        $scope.shoppingList[index].text = newName;
 
         var editData = {
             'itemIndex': index,
-            'itemNewName': $scope.shoppingList[index].text
+            'itemNewName': newName
         };
         $http.post('server/editItemName.php', editData).success(function () {
-            $scope.retrieveList();
         });
     };
 });
@@ -103,7 +98,9 @@ shoppingListModule.directive('itemname', function() {
         replace: true,
         scope: {
             originalName: '=',
-            isGotten: '='
+            isGotten: '=',
+            itemIndex: '=',
+            parentSaveNameEdit: '&saveFunc'
         },
         template:
             '<div>' +
@@ -128,12 +125,12 @@ shoppingListModule.directive('itemname', function() {
 
             scope.stopModifyingName = function stopModifyingName() {
                 scope.beingEdited = false;
-                //TODO: save to the server and to the controller's scope
+                scope.parentSaveNameEdit({ index: scope.itemIndex, newName: scope.itemText});
             };
 
             scope.cancelModifyingName = function cancelModifyingName() {
                 scope.beingEdited = false;
-            }
+            };
         }
     }
 });
