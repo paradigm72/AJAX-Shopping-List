@@ -26,7 +26,8 @@ function ShoppingListCtrl($scope, $http) {
 		//send new item to the server
 		var postData = { 'itemName': newItem.text };
 		$http.post('server/addToList.php', postData).success(function() {
-		    });
+		    $scope.retrieveList();
+        });
 	};
 	
 	$scope.removeItem = function(index) {
@@ -39,7 +40,8 @@ function ShoppingListCtrl($scope, $http) {
 
 		//remove item from the server
 		$http.post('server/removeItem.php', removeData).success(function() {
-			});
+            $scope.retrieveList();
+        });
 	};
 
     $scope.toggleGotten = function(index) {
@@ -51,15 +53,21 @@ function ShoppingListCtrl($scope, $http) {
         };
         //item state is already updated, so save based on the *new* state
         if ($scope.shoppingList[index].isGotten === true) {
-            $http.post('server/markItemGotten.php', gottenData).success(function() {});
+            $http.post('server/markItemGotten.php', gottenData).success(function() {
+                $scope.retrieveList();
+            });
         }
         else {
-            $http.post('server/unMarkItemGotten.php', gottenData).success(function() {});
+            $http.post('server/unMarkItemGotten.php', gottenData).success(function() {
+                $scope.retrieveList();
+            });
         }
     };
 
-    $scope.startModifyingName = function(index) {
+    $scope.startModifyingName = function(index, element) {
         $scope.shoppingList[index].beingEdited = true;
+        //TODO: focus on the text box (maybe a directive?) element[0].focus();
+
     };
 
     $scope.stopModifyingName = function(index) {
@@ -70,6 +78,7 @@ function ShoppingListCtrl($scope, $http) {
             'itemNewName': $scope.shoppingList[index].text
         };
         $http.post('server/editItemName.php', editData).success(function () {
-            });
+            $scope.retrieveList();
+        });
     };
 }

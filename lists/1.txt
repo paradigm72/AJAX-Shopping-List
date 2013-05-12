@@ -1,6 +1,9 @@
-V8%20fusion||false
+test%20name%20edit||false
 Second||true 
-Protein%20bar||false
-V8%20fusion||true 
-Birthday%20card||true 
-M%26M%20candies||true 
+Birthday%20card||false
+test%20new%20things||true 
+fireworks||false
+protein%20powder||true 
+v8%20fusion%20juice||false
+milk||false
+Evie%27s%20milk||false

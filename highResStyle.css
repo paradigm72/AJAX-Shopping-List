@@ -16,15 +16,13 @@ div, td {
 }
 
 /*Buttons also much bigger - images here and their containing cells below*/
-.button {
+img.button {
 	height: 92px;
 	width: 92px;
 }
-
-
-.markGotten, .unMarkGotten, .delete, .favoritesMarkerIcon,
-.addFavorite, .newItemMarkerIcon, .addText {
+td.button {
 	width: 100px;
+    padding-right: 8px;
 }
 
 

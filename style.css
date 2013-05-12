@@ -1,15 +1,3 @@
-/*-----------------------
---- Paul Romine
---- (c) 2011
----	NAME: 		style.css
----	PURPOSE: 	styling for the shopping list app
----
---- *pmr 10/2/11 - making + button bigger, more padding around it
---- *pmr 2/25/12 - added image sizing here, since it now varies by stylesheet
----------------------------*/
-
-
-
 /* General page layout, header formatting */
 body {
 	background-color: #444;
@@ -37,31 +25,20 @@ td {
 	font-size: 2.4em;
 }
 
-.gottenItem, .item-true {
+/*If item is already 'gotten', give it a strikethrough*/
+.item-true {
 	text-decoration: line-through;
 	color: #777;
 }
 
-/*general button size (for the inner <img> tag -
-overridden massively for mobile devices in the high res sheet)*/
-.button {
+/*sizing for the image/image cell*/
+img.button {
 	height: 64px;
 	width: 64px;
 }
-
-
-
-/*button: mark/unmark an item as gotten*/
-.markGotten {
+td.button {
 	width: 70px;
 	padding-right: 8px;
-}
-
-
-/*buttons: delete item */
-.delete {
-	width: 70px;
-	padding-right: 2px;
 }
 
 /*overrides a default in webkit that puts huge space underneath a form*/
@@ -86,6 +63,7 @@ form {
 input {
 	width: 100%;
 	margin-right: 5px;
+    padding-left: 5px;
 	font-size: 0.8em;
     height: 1.2em;
 }
