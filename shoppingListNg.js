@@ -1,4 +1,6 @@
-function ShoppingListCtrl($scope, $http) {
+var shoppingListModule = angular.module('shoppingList', []);
+
+shoppingListModule.controller('ListControl', function($scope, $http) {
 	$scope.retrieveList = function() {
 		$http.get('server/retrieveList.php').success(function(data) {
 			$scope.shoppingList = data;
@@ -81,4 +83,57 @@ function ShoppingListCtrl($scope, $http) {
             $scope.retrieveList();
         });
     };
-}
+});
+
+
+shoppingListModule.directive('ngSlBlur', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('blur', function() {
+                scope.$apply(attrs.ngSlBlur);
+            });
+        }
+    }
+});
+
+shoppingListModule.directive('itemname', function() {
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            originalName: '=',
+            isGotten: '='
+        },
+        template:
+            '<div>' +
+                '<div class="item-{{isGotten}}" ng-click="startModifyingName()"' +
+                ' ng-hide="beingEdited">{{originalName}}</div>' +
+                '<form ng-submit="stopModifyingName()">' +
+                    '<input type="text" ng-model="itemText"' +
+                    ' placeholder="{{originalName}}"' +
+                    ' ng-show="beingEdited"' +
+                    ' ng-sl-blur="cancelModifyingName()" ' +
+                    ' ng-keydown="stopModifyingName()" autofocus />' +
+                '</form>' +
+            '</div>',
+        link: function(scope, element, attrs, controller) {
+            scope.beingEdited = false;
+
+            scope.startModifyingName = function startModifyingName() {
+                scope.beingEdited = true;
+                //below not working, not sure why...
+                element[0].lastElementChild.lastElementChild.focus();
+            };
+
+            scope.stopModifyingName = function stopModifyingName() {
+                scope.beingEdited = false;
+                //TODO: save to the server and to the controller's scope
+            };
+
+            scope.cancelModifyingName = function cancelModifyingName() {
+                scope.beingEdited = false;
+            }
+        }
+    }
+});

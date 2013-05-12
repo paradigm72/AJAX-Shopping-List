@@ -19,21 +19,18 @@
 <html>
 
 
-<body ng-app>
+<body ng-app='shoppingList'>
 
 
 
-<div ng-controller="ShoppingListCtrl" data-ng-init="retrieveList()">
+<div ng-controller="ListControl" data-ng-init="retrieveList()">
 <div id="header" ng-click="retrieveList()">Shopping List</div>
 <table class="items">
 	<tr ng-repeat="item in shoppingList">
-		<td class="item-{{item.isGotten}}" ng-click="startModifyingName($index)">
-			<div ng-hide="item.beingEdited">{{item.text}}</div>
-            <form ng-submit="stopModifyingName($index)">
-                <input type="text" ng-model="item.text" placeholder="{{item.text}}"
-                   ng-show="item.beingEdited">
-            </form>
-		</td>
+        <td>
+            <itemname original-name='item.text' is-gotten='item.isGotten'>
+            </itemname>
+        </td>
 		<td class="button" ng-click="toggleGotten($index)">
             <img ng-show='item.isGotten' src='images/undo.png' class='button'>
             <img ng-show='!item.isGotten' src='images/gotten.png' class='button'>

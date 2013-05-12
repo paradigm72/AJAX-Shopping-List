@@ -1,7 +1,7 @@
-test%20name%20edit||false
+test%20name%20edit||true 
 Second||true 
 Birthday%20card||false
-test%20new%20things||true 
+test%20new%20things||false
 fireworks||false
 protein%20powder||true 
 v8%20fusion%20juice||false
