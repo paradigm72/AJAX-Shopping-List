@@ -1,15 +1,13 @@
 var shoppingListModule = angular.module('shoppingList', []);
 
-shoppingListModule.controller('ListControl', function($scope, $http) {
+shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
 	$scope.retrieveList = function() {
 		$http.get('server/retrieveList.php').success(function(data) {
-			$scope.shoppingList = [];
-
             $scope.shoppingList = data;
 
 			//store decoded data in $scope.shoppingList
 			for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
-				$scope.shoppingList[i].text = 
+				$scope.shoppingList[i].text =
 					decodeURIComponent($scope.shoppingList[i].text);
                 $scope.shoppingList[i].beingEdited = false;
 			}
@@ -30,8 +28,10 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
 		//send new item to the server
 		var postData = { 'itemName': newItem.text };
 		$http.post('server/addToList.php', postData).success(function() {
-		    //$scope.retrieveList();
+            $timeout(function() { $scope.retrieveList() }, 1000);
         });
+
+
 	};
 	
 	$scope.removeItem = function(index) {
@@ -44,7 +44,7 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
 
 		//remove item from the server
 		$http.post('server/removeItem.php', removeData).success(function() {
-            //$scope.retrieveList();
+            $timeout(function() { $scope.retrieveList() }, 1000);
         });
 	};
 
@@ -58,12 +58,12 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
         //item state is already updated, so save based on the *new* state
         if ($scope.shoppingList[index].isGotten === true) {
             $http.post('server/markItemGotten.php', gottenData).success(function() {
-                //$scope.retrieveList();
+                $timeout(function() { $scope.retrieveList() }, 1000);
             });
         }
         else {
             $http.post('server/unMarkItemGotten.php', gottenData).success(function() {
-                //$scope.retrieveList();
+                $timeout(function() { $scope.retrieveList() }, 1000);
             });
         }
     };
@@ -76,6 +76,7 @@ shoppingListModule.controller('ListControl', function($scope, $http) {
             'itemNewName': newName
         };
         $http.post('server/editItemName.php', editData).success(function () {
+            $timeout(function() { $scope.retrieveList() }, 1000);
         });
     };
 });
@@ -85,8 +86,19 @@ shoppingListModule.directive('ngSlBlur', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
+            scope.safeApply = function(fn) {
+                var phase = this.$root.$$phase;
+                if(phase == '$apply' || phase == '$digest') {
+                    if(fn && (typeof(fn) === 'function')) {
+                        fn(); }
+                } else {
+                    this.$apply(fn); }
+            };
+
             element.bind('blur', function() {
-                scope.$apply(attrs.ngSlBlur);
+                //when adding new items, we create rows here during $digest
+                //which makes $apply throw exceptions, so use "safeApply"
+                scope.safeApply(attrs.ngSlBlur);
             });
         }
     }
