@@ -2,6 +2,7 @@
     $POSTDATA = file_get_contents("php://input");
     $POSTDATA = json_decode($POSTDATA, true);
     $itemIndex = $POSTDATA['itemIndex'];
+    $itemNamePOST = $POSTDATA['itemName'];
 	
 	$filePointer = @fopen("../lists/1.txt", "r+");	
 	if (!$filePointer) {
@@ -20,6 +21,13 @@
 	$rawLine = fgets($filePointer, 999);
 	$lineArray = explode('|', $rawLine);
 	$itemName = $lineArray[0];
+
+    //fuzzy data integrity checking - if the name doesn't match, bail
+    $itemNamePOST=strip_tags($itemNamePOST);
+    $itemNamePOST=rawurlencode($itemNamePOST);
+    if (strcmp($itemNamePOST, $itemName) != 0) {
+        exit;
+    }
 
 	//create the new version of this line: name,,true  <--- true means 'gotten'
     //note: massive cheat here: the extra space prevents the file pointer from desyncing when

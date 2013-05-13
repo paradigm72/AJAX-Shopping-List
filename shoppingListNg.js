@@ -34,9 +34,10 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
 
 	};
 	
-	$scope.removeItem = function(index) {
+	$scope.removeItem = function(index, itemName) {
 		var removeData = {
-			'itemIndex': index
+			'itemIndex': index,
+            'itemName': itemName  //for fuzzy data integrity checking
 		};
 
 		//remove item on the client
@@ -48,12 +49,13 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
         });
 	};
 
-    $scope.toggleGotten = function(index) {
+    $scope.toggleGotten = function(index, itemName) {
         //toggle the value in the model
         $scope.shoppingList[index].isGotten = !$scope.shoppingList[index].isGotten;
 
         var gottenData = {
-            'itemIndex': index
+            'itemIndex': index,
+            'itemName': itemName  //for fuzzy data integrity checking
         };
         //item state is already updated, so save based on the *new* state
         if ($scope.shoppingList[index].isGotten === true) {
@@ -68,12 +70,14 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
         }
     };
 
-    $scope.saveNameEdit = function(index, newName) {
+    $scope.saveNameEdit = function(index, newName, originalName) {
         $scope.shoppingList[index].text = newName;
 
         var editData = {
             'itemIndex': index,
-            'itemNewName': newName
+            'itemNewName': newName,
+            'itemOriginalName': originalName   //for fuzzy data integrity checking
+
         };
         $http.post('server/editItemName.php', editData).success(function () {
             $timeout(function() { $scope.retrieveList() }, 1000);
@@ -137,11 +141,16 @@ shoppingListModule.directive('itemname', function() {
 
             scope.stopModifyingName = function stopModifyingName() {
                 scope.beingEdited = false;
-                scope.parentSaveNameEdit({ index: scope.itemIndex, newName: scope.itemText});
+                scope.parentSaveNameEdit({
+                    index: scope.itemIndex,
+                    newName: scope.itemText,
+                    originalName: scope.originalName
+                });
             };
 
             scope.cancelModifyingName = function cancelModifyingName() {
                 scope.beingEdited = false;
+                scope.itemText = "";
             };
         }
     }

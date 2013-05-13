@@ -20,10 +20,9 @@
     $POSTDATA = json_decode($POSTDATA, true);
 	$itemIndex = $POSTDATA['itemIndex'];
 	$itemNewName = $POSTDATA['itemNewName'];
+    $itemOriginalName = $POSTDATA['itemOriginalName'];
 	
 	$itemNewName = rawurlencode($itemNewName);
-	
-	
 	
 	
 	$filePointer = @fopen("../lists/1.txt", "r");	
@@ -41,6 +40,13 @@
 	
 	//now $rawLine contains the correct line
 	$rawLine = fgets($filePointer, 999);
+
+    //check whether the original name matches - if not, bail
+    $itemOriginalName=strip_tags($itemOriginalName);
+    $itemOriginalName=rawurlencode($itemOriginalName);
+    if (strcmp($itemOriginalName, $lineArray[0]) != 0) {
+        exit;
+    }
 	
 	//fetch whether this item is 'gotten' or not
 	$lineArray = explode('|', $rawLine);
@@ -63,5 +69,4 @@
 	fclose($filePointer);
 	$filePointer = @fopen("../lists/1.txt", "w");
 	fwrite($filePointer, $tempFileContents);	
-?>
 ?>

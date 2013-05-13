@@ -1,5 +1,4 @@
-new%20thing||false
-things||true 
-Crackers||true 
-triscuits%20%28pepper%29||false
-go||false
+Honey||false
+Things||true 
+Birthday%20cards||false
+Evie%27s%20milk||true 

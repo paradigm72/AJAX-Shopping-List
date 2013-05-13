@@ -29,14 +29,15 @@
 	<tr ng-repeat="item in shoppingList">
         <td>
             <itemname original-name='item.text' is-gotten='item.isGotten'
-                      item-index='$index' save-func="saveNameEdit(index, newName)">
+                      item-index='$index'
+                      save-func="saveNameEdit(index, newName, originalName)">
             </itemname>
         </td>
-		<td class="button" ng-click="toggleGotten($index)">
+		<td class="button" ng-click="toggleGotten($index, item.text)">
             <img ng-show='item.isGotten' src='images/undo.png' class='button'>
             <img ng-show='!item.isGotten' src='images/gotten.png' class='button'>
 		</td>
-		<td class='button' ng-click="removeItem($index)">
+		<td class='button' ng-click="removeItem($index, item.text)">
 			<img src='images/remove.png' class='button'>
 		</td>
 	</tr>
