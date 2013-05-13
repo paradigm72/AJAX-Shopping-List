@@ -40,6 +40,7 @@
 	
 	//now $rawLine contains the correct line
 	$rawLine = fgets($filePointer, 999);
+    $lineArray = explode('|', $rawLine);
 
     //check whether the original name matches - if not, bail
     $itemOriginalName=strip_tags($itemOriginalName);
@@ -47,9 +48,8 @@
     if (strcmp($itemOriginalName, $lineArray[0]) != 0) {
         exit;
     }
-	
-	//fetch whether this item is 'gotten' or not
-	$lineArray = explode('|', $rawLine);
+
+    //fetch whether this item is 'gotten' or not
 	$itemGotten = $lineArray[2];
 	
 	//create the new version of this line: name,,gotten
