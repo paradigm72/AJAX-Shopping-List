@@ -135,8 +135,7 @@ shoppingListModule.directive('itemname', function() {
 
             scope.startModifyingName = function startModifyingName() {
                 scope.beingEdited = true;
-                //below not working, not sure why...
-                element[0].lastElementChild.lastElementChild.focus();
+                scope.itemText = scope.originalName;
             };
 
             scope.stopModifyingName = function stopModifyingName() {

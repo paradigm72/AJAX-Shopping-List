@@ -1,7 +1,8 @@
 Honey||false
 Things||true 
-Birthday%20cards||true 
-Evie%27s%20milk||true 
-Protein%20powder||false
-cereal%20for%20evie||false
-triscuits||false
+Cereal%20for%20Evie||true 
+triscuits||true 
+Onion||false
+Carrots||true 
+Toilet%20plunger%20%28g%29||true 
+drano||false
