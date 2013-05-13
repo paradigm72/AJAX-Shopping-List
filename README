@@ -1,7 +1,12 @@
 This is an AJAX shopping list designed for a group of people who want to share and edit a single list using various mobile devices.
 
-The basic architecture is a single PHP page with a lot of Javascript hooks that when tapped, call asynchronously into server-side PHP to interact with the list. All of these interactions have callbacks that go refresh the list when the server is done saving the modification.
+The basic architecture is a single Angular controller with a ShoppingList model, and a few directives to hide some complexity around editing existing items. Server-side functionality is in PHP scripts that save and load from flat files.
 
-Outstanding features under construction as of 7/15/12 are:
--Ability to create multiple lists (currently this code does not scale at all)
--Automatic creation of the favorites list (or at least non-hardcoded storage)
+This only operates on a single file and isn't scalable at all to multiple lists or modes. It handles concurrency only in that it prevents obvious data integrity errors and the most common scenarios - complex simultaneous edits are typically rejected rather than handled.
+
+Under consideration for future development:
+-Potentially move list items into the AngularJS "resource" framework to abstract away loading/saving a bit more
+-Add ability to flag items for certain stores or categories, e.g. "grocery store" vs. "hardware store"
+-Keep tweaking the focus logic for the text boxes to handle more scenarios
+-Larger framework to handle toggling between different lists entirely
+-Remember favorite items and offer them as suggestions
