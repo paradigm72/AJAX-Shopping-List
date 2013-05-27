@@ -24,6 +24,8 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
 		//add new item on the client
 		$scope.shoppingList.push(newItem);
 		$scope.newItemText = '';
+        $scope.setFocusNow = true;
+
 		
 		//send new item to the server
 		var postData = { 'itemName': newItem.text };
@@ -108,7 +110,7 @@ shoppingListModule.directive('ngSlBlur', function() {
     }
 });
 
-shoppingListModule.directive('itemname', function() {
+shoppingListModule.directive('itemname', function($timeout) {
     return {
         restrict: 'E',
         replace: true,
@@ -127,15 +129,18 @@ shoppingListModule.directive('itemname', function() {
                     ' placeholder="{{originalName}}"' +
                     ' ng-show="beingEdited"' +
                     ' ng-sl-blur="cancelModifyingName()" ' +
-                    ' ng-keydown="stopModifyingName()" autofocus />' +
+                    ' ng-keydown="stopModifyingName()" />' +
                 '</form>' +
             '</div>',
-        link: function(scope, element, attrs, controller) {
+        link: function(scope, element) {
             scope.beingEdited = false;
 
             scope.startModifyingName = function startModifyingName() {
                 scope.beingEdited = true;
                 scope.itemText = scope.originalName;
+                $timeout(function() {
+                    element[0].lastChild.lastChild.focus();
+                });
             };
 
             scope.stopModifyingName = function stopModifyingName() {
@@ -151,6 +156,23 @@ shoppingListModule.directive('itemname', function() {
                 scope.beingEdited = false;
                 scope.itemText = "";
             };
+        }
+    }
+});
+
+
+shoppingListModule.directive('ngSlFocusOnAdd', function($timeout) {
+    return {
+        restrict: 'A',
+        link: function(scope, element) {
+            scope.$watch('setFocusNow', function(value) {
+                if (value === true) {
+                    //$timeout(function() {
+                        element[0].focus();
+                        scope.setFocusNow = false;
+                    //});
+                }
+            });
         }
     }
 });

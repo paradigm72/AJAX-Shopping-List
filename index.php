@@ -50,7 +50,7 @@
 			<img src='images/edit.png' class='button'>
 		</td>
 		<td class='newText'>
-			<input type="text" ng-model="newItemText"
+			<input type="text" ng-model="newItemText" ng-sl-focus-on-add
                    placeholder="Add new item..." id='newItem'>
 		</td>
 		<td class='addText' id='newItemCell'>

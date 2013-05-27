@@ -1,8 +1,7 @@
-Honey||false
-Things||true 
-Cereal%20for%20Evie||true 
-triscuits||true 
-Onion||false
-Carrots||true 
-Toilet%20plunger%20%28g%29||true 
-drano||false
+Onions||true 
+Carrot||true 
+v8%20fusion||false
+soup||false
+Onions||false
+Milk||false
+Protein||false
