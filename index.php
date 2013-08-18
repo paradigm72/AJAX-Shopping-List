@@ -24,8 +24,12 @@
 
 
 <div ng-controller="ListControl" data-ng-init="retrieveList()">
-<div id="header" ng-click="retrieveList()">Shopping List</div>
-<table class="items">
+<div id="header" ng-click="retrieveList()">
+Shopping List
+<img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
+</div>
+
+    <table class="items">
 	<tr ng-repeat="item in shoppingList">
         <td>
             <itemname original-name='item.text' is-gotten='item.isGotten'

@@ -52,6 +52,13 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
         });
 	};
 
+    $scope.removeAll = function() {
+        //remove script on the server, then refresh list (no UI update if not successful)
+        $http.post('server/removeAll.php', {}).success(function() {
+            $timeout(function() { $scope.retrieveList() }, 1000);
+        })
+    };
+
     $scope.toggleGotten = function(index, itemName) {
         //toggle the value in the model
         $scope.shoppingList[index].isGotten = !$scope.shoppingList[index].isGotten;

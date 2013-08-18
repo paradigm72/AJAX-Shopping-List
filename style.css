@@ -46,6 +46,13 @@ td.button {
 	padding-right: 8px;
 }
 
+.removeAll {
+    float: right;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+
 /*overrides a default in webkit that puts huge space underneath a form*/
 form {
 	margin-bottom: 0em;
