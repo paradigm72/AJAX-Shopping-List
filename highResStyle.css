@@ -20,6 +20,15 @@ img.button {
 	height: 92px;
 	width: 92px;
 }
+
+
+.removeAll {
+    float: right;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+
 td.button {
 	width: 100px;
     padding-right: 8px;
