@@ -29,7 +29,7 @@
 	<tr ng-repeat="item in shoppingList">
         <td>
             <itemname original-name='item.text' is-gotten='item.isGotten'
-                      item-index='$index'
+                      item-index='$index' color-override='item.colorOverride'
                       save-func="saveNameEdit(index, newName, originalName)">
             </itemname>
         </td>
@@ -37,9 +37,9 @@
             <img ng-show='item.isGotten' src='images/undo.png' class='button'>
             <img ng-show='!item.isGotten' src='images/gotten.png' class='button'>
 		</td>
-		<td class='button' ng-click="removeItem($index, item.text)">
+		<!--<td class='button' ng-click="removeItem($index, item.text)">
 			<img src='images/remove.png' class='button'>
-		</td>
+		</td>-->
 	</tr>
 </table>
 

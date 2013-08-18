@@ -18,7 +18,8 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
 		var newItem = {
 			text: $scope.newItemText,
 			isGotten: false,
-            beingEdited: false
+            beingEdited: false,
+            colorOverride: 'gray'
 		};
 		
 		//add new item on the client
@@ -118,11 +119,13 @@ shoppingListModule.directive('itemname', function($timeout) {
             originalName: '=',
             isGotten: '=',
             itemIndex: '=',
+            colorOverride: '=',
             parentSaveNameEdit: '&saveFunc'
         },
         template:
             '<div>' +
-                '<div class="item-{{isGotten}}" ng-click="startModifyingName()"' +
+                '<div class="item-{{isGotten}} item-{{colorOverride}}"' +
+                ' ng-click="startModifyingName()"' +
                 ' ng-hide="beingEdited">{{originalName}}</div>' +
                 '<form ng-submit="stopModifyingName()">' +
                     '<input type="text" ng-model="itemText"' +

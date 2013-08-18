@@ -31,6 +31,11 @@ td {
 	color: #777;
 }
 
+/*If item is just added in client but not yet confirmed on server, gray text*/
+.item-gray {
+    color: #777;
+}
+
 /*sizing for the image/image cell*/
 img.button {
 	height: 64px;
