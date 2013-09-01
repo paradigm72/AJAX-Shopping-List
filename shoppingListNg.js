@@ -56,7 +56,7 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
         var confirmDelete = confirm("Are you sure you want to clear the list?");
         if (confirmDelete) {
             //remove script on the server, then refresh list (no UI update if not successful)
-            $http.post('server/removeAll.php', {}).success(function() {
+            $http.post('server/removeAllGotten.php', {}).success(function() {
                 $timeout(function() { $scope.retrieveList() }, 1000);
             });
         }
