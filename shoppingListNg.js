@@ -53,14 +53,15 @@ shoppingListModule.controller('ListControl', function($scope, $http, $timeout) {
 	};
 
     $scope.removeAll = function() {
-        var confirmDelete = confirm("Are you sure you want to clear the list?");
-        if (confirmDelete) {
+        //iOS7 has suppressed alert popups on homescreen apps, so we can't do this anymore
+        //var confirmDelete = confirm("Are you sure you want to clear the list?");
+        //if (confirmDelete) {
             //remove script on the server, then refresh list (no UI update if not successful)
             $http.post('server/removeAllGotten.php', {}).success(function() {
                 $timeout(function() { $scope.retrieveList() }, 1000);
             });
-        }
-        else {};
+        //}
+        //else {};
     };
 
     $scope.toggleGotten = function(index, itemName) {
