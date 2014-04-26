@@ -139,12 +139,12 @@ shoppingListModule.directive('itemname', function($timeout) {
                 '<div class="item-{{isGotten}} item-{{colorOverride}}"' +
                 ' ng-click="startModifyingName()"' +
                 ' ng-hide="beingEdited">{{originalName}}</div>' +
-                '<form ng-submit="stopModifyingName()">' +
+                '<form ng-submit="stopModifyingName($event)">' +
                     '<input type="text" ng-model="itemText"' +
                     ' placeholder="{{originalName}}"' +
                     ' ng-show="beingEdited"' +
-                    ' ng-sl-blur="cancelModifyingName()" ' +
-                    ' ng-keydown="stopModifyingName()" />' +
+                    ' ng-sl-blur="cancelModifyingName($event)" ' +
+                    ' ng-keydown="stopModifyingName($event)" />' +
                 '</form>' +
             '</div>',
         link: function(scope, element) {
@@ -158,16 +158,20 @@ shoppingListModule.directive('itemname', function($timeout) {
                 });
             };
 
-            scope.stopModifyingName = function stopModifyingName() {
-                scope.beingEdited = false;
-                scope.parentSaveNameEdit({
-                    index: scope.itemIndex,
-                    newName: scope.itemText,
-                    originalName: scope.originalName
-                });
+            scope.stopModifyingName = function stopModifyingName($event) {
+                //If Enter pressed, save the edit. Note on some browser setups,
+                //Enter just accepts the PHP form anyway and calls through the submit code path.
+                if ($event.keyCode == 13)   {
+                    scope.beingEdited = false;
+                    scope.parentSaveNameEdit({
+                        index: scope.itemIndex,
+                        newName: scope.itemText,
+                        originalName: scope.originalName
+                    });
+                }
             };
 
-            scope.cancelModifyingName = function cancelModifyingName() {
+            scope.cancelModifyingName = function cancelModifyingName($event) {
                 scope.beingEdited = false;
                 scope.itemText = "";
             };
