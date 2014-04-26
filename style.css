@@ -46,6 +46,18 @@ td.button {
 	padding-right: 8px;
 }
 
+.prevList {
+    float: right;
+    margin-right: 26px;
+    margin-top: 2px;
+}
+
+.nextList {
+    float: right;
+    margin-right: 32px;
+    margin-top: 2px;
+}
+
 .removeAll {
     float: right;
     margin-right: 10px;

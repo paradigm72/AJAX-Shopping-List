@@ -23,9 +23,18 @@ img.button {
 
 
 .removeAll {
-    float: right;
     margin-right: 10px;
     margin-top: 20px;
+}
+
+.prevList {
+    margin-right: 42px;
+    margin-top: 2px;
+}
+
+.nextList {
+    margin-right: 26px;
+    margin-top: 2px;
 }
 
 

@@ -25,8 +25,10 @@
 
 <div ng-controller="ListControl" data-ng-init="retrieveList()">
 <div id="header" ng-click="retrieveList()">
-Shopping List
+Shopping List: listName
 <img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
+<img src='images/next.png' class='button nextList' ng-click="nextList()">
+<img src='images/previous.png' class='button prevList' ng-click="prevList()">
 </div>
 
     <table class="items">
