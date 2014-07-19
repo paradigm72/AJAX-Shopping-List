@@ -13,7 +13,8 @@
 <!-- Angular-->
 <script src="angular.js"></script>
 <script src="shoppingListNg.js"></script>
-
+<script src="shoppingListControlNg.js"></script>
+<script src="shoppingListPickerNg.js"></script>
 
 <title>Shopping List</title>
 <html>
@@ -21,50 +22,50 @@
 
 <body ng-app='shoppingList'>
 
-
+<!-- <div ng-controller="ListPicker"></div> -->
 
 <div ng-controller="ListControl" data-ng-init="retrieveList()">
-<div id="header" ng-click="retrieveList()">
-Shopping List: listName
-<img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
-<img src='images/next.png' class='button nextList' ng-click="nextList()">
-<img src='images/previous.png' class='button prevList' ng-click="prevList()">
-</div>
+    <div id="header" ng-click="retrieveList()">
+        Shopping List: listName
+        <img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
+        <img src='images/next.png' class='button nextList' ng-click="nextList()">
+        <img src='images/previous.png' class='button prevList' ng-click="prevList()">
+    </div>
 
-    <table class="items">
-	<tr ng-repeat="item in shoppingList">
-        <td>
-            <itemname original-name='item.text' is-gotten='item.isGotten'
-                      item-index='$index' color-override='item.colorOverride'
-                      save-func="saveNameEdit(index, newName, originalName)">
-            </itemname>
-        </td>
-		<td class="button" ng-click="toggleGotten($index, item.text)">
-            <img ng-show='item.isGotten' src='images/undo.png' class='button'>
-            <img ng-show='!item.isGotten' src='images/gotten.png' class='button'>
-		</td>
-		<!--<td class='button' ng-click="removeItem($index, item.text)">
-			<img src='images/remove.png' class='button'>
-		</td>-->
-	</tr>
-</table>
+        <table class="items">
+        <tr ng-repeat="item in shoppingList">
+            <td>
+                <itemname original-name='item.text' is-gotten='item.isGotten'
+                          item-index='$index' color-override='item.colorOverride'
+                          save-func="saveNameEdit(index, newName, originalName)">
+                </itemname>
+            </td>
+            <td class="button" ng-click="toggleGotten($index, item.text)">
+                <img ng-show='item.isGotten' src='images/undo.png' class='button'>
+                <img ng-show='!item.isGotten' src='images/gotten.png' class='button'>
+            </td>
+            <!--<td class='button' ng-click="removeItem($index, item.text)">
+                <img src='images/remove.png' class='button'>
+            </td>-->
+        </tr>
+    </table>
 
-<table class='items'>
-<form ng-submit='addNewItem()'>
-	<tr id='inputRow'>
-		<td class='newItemMarkerIcon button'>
-			<img src='images/edit.png' class='button'>
-		</td>
-		<td class='newText'>
-			<input type="text" ng-model="newItemText" ng-sl-focus-on-add
-                   placeholder="Add new item..." id='newItem'>
-		</td>
-		<td class='addText' id='newItemCell'>
-			<img src='images/add.png' class='addText'>
-		</td>
-	</tr>
-</form>
-</table>
+    <table class='items'>
+    <form ng-submit='addNewItem()'>
+        <tr id='inputRow'>
+            <td class='newItemMarkerIcon button'>
+                <img src='images/edit.png' class='button'>
+            </td>
+            <td class='newText'>
+                <input type="text" ng-model="newItemText" ng-sl-focus-on-add
+                       placeholder="Add new item..." id='newItem'>
+            </td>
+            <td class='addText' id='newItemCell'>
+                <img src='images/add.png' class='addText'>
+            </td>
+        </tr>
+    </form>
+    </table>
 </div>
 
 </body>
