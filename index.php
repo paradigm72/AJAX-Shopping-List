@@ -22,14 +22,21 @@
 
 <body ng-app='shoppingList'>
 
-<!-- <div ng-controller="ListPicker"></div> -->
 
 <div ng-controller="ListControl" data-ng-init="retrieveList()">
     <div id="header" ng-click="retrieveList()">
+        <img src='images/edit.png' class='button removeAll' ng-click="showListPicker()">
         Shopping List: listName
         <img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
-        <img src='images/next.png' class='button nextList' ng-click="nextList()">
-        <img src='images/previous.png' class='button prevList' ng-click="prevList()">
+    </div>
+
+    <div ng-controller="ListPicker" ng-show='pickerVisible'
+         data-ng-init="initializeList()" class='popover'>
+        <table class='lists'>
+            <tr ng-repeat="list in listOfLists">
+                <td>{{list.name}}</td>
+            </tr>
+        </table>
     </div>
 
         <table class="items">

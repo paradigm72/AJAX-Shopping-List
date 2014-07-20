@@ -2,3 +2,4 @@ Triscuits||false
 Milk%20and%20such%20other...||false
 Test%20second%20new%20item||true 
 New%20thing||false
+Test%20add%20new||false

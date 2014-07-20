@@ -1,6 +1,11 @@
 angular.module('shoppingList').
 controller('ListControl', function($scope, $http, $timeout) {
-	$scope.retrieveList = function() {
+	 $scope.showListPicker = function() {
+         $scope.$broadcast('openListPicker');
+     }
+
+
+     $scope.retrieveList = function() {
 		$http.get('server/retrieveList.php').success(function(data) {
             $scope.shoppingList = data;
 
