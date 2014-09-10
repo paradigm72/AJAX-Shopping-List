@@ -31,7 +31,7 @@
     </div>
 
     <div ng-controller="ListPicker" ng-show='pickerVisible'
-         data-ng-init="initializeList()" class='popover'>
+         data-ng-init="initializeList()" class='popover' ng-style='popoverLeftStyle()'>
         <table class='lists'>
             <tr ng-repeat="list in listOfLists">
                 <td>{{list.name}}</td>

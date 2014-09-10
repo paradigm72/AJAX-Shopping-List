@@ -2,7 +2,15 @@ angular.module('shoppingList').
 controller('ListPicker', function($scope, $http, $timeout) {
     $scope.$on('openListPicker', function() {
         $scope.pickerVisible = true;
+
     });
+
+    $scope.popoverLeftStyle = function() {
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var left = w - 180;
+        left = left + "px";
+        return { "left": left};
+    };
 
     $scope.initializeList = function() {
         $scope.listOfLists = [

@@ -13,11 +13,18 @@ body {
 
 .popover {
     position: absolute;
-    margin-left: 2px;
+    width: 150px;
+    margin-right: 2px;
     margin-top: 10px;
-    padding-right: 5px;
-    border: 2px solid lightslategray;
+    padding-right: 10px;
+    padding-left: 5px;
+    border: 2px solid rgb(44, 54, 63);
     background-color: lightgrey;
+    float: right;
+    display: inline-block;
+    border-radius: 20px;
+    box-shadow: 0 0 7px black;
+    text-align: center;
 }
 
 table.lists {
