@@ -12,6 +12,11 @@ controller('ListPicker', function($scope, $http, $timeout) {
         return { "left": left};
     };
 
+    $scope.switchToList = function(index) {
+        data = { 'index': index };
+        $scope.$emit('switchToList', data);
+    }
+
     $scope.initializeList = function() {
         $scope.listOfLists = [
             {name: 'Target'},

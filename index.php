@@ -1,3 +1,6 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+
 <link rel="stylesheet" type="text/css" href="style.css" />
 
 <!-- iPhone-specific stuff: -->
@@ -23,7 +26,7 @@
 <body ng-app='shoppingList'>
 
 
-<div ng-controller="ListControl" data-ng-init="retrieveList()">
+<div ng-controller="ListControl" data-ng-init="retrieveList(1)">
     <div id="header" ng-click="retrieveList()">
         <img src='images/edit.png' class='button removeAll' ng-click="showListPicker()">
         Shopping List: listName
@@ -34,7 +37,7 @@
          data-ng-init="initializeList()" class='popover' ng-style='popoverLeftStyle()'>
         <table class='lists'>
             <tr ng-repeat="list in listOfLists">
-                <td>{{list.name}}</td>
+                <td ng-click="switchToList($index)">{{list.name}}</td>
             </tr>
         </table>
     </div>

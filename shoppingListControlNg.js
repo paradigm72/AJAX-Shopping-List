@@ -4,18 +4,32 @@ controller('ListControl', function($scope, $http, $timeout) {
          $scope.$broadcast('openListPicker');
      }
 
+     $scope.$on('switchToList', function(data) {
+          $scope.retrieveList(2);
+     });
 
-     $scope.retrieveList = function() {
-		$http.get('server/retrieveList.php').success(function(data) {
-            $scope.shoppingList = data;
+     $scope.retrieveList = function(listID) {
+		 if (listID===1) {
+             $http.get('server/retrieveList.php').success(function(data) {
+                 $scope.shoppingList = data;
 
-			//store decoded data in $scope.shoppingList
-			for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
-				$scope.shoppingList[i].text =
-					decodeURIComponent($scope.shoppingList[i].text);
-                $scope.shoppingList[i].beingEdited = false;
-			}
-		});
+                 //store decoded data in $scope.shoppingList
+                 for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
+                     $scope.shoppingList[i].text =
+                         decodeURIComponent($scope.shoppingList[i].text);
+                     $scope.shoppingList[i].beingEdited = false;
+                 }
+             });
+         }
+         if (listID===2) {
+              $scope.shoppingList = [
+                  { 'text': 'nuts', 'isGotten': true },
+                  { 'text': 'bolts', 'isGotten': true },
+                  { 'text': 'doodads', 'isGotten': false }
+              ]
+         }
+
+
     };
 	
 	$scope.addNewItem = function() {
@@ -35,7 +49,7 @@ controller('ListControl', function($scope, $http, $timeout) {
 		//send new item to the server
 		var postData = { 'itemName': newItem.text };
 		$http.post('server/addToList.php', postData).success(function() {
-            $timeout(function() { $scope.retrieveList() }, 1000);
+            $timeout(function() { $scope.retrieveList(1) }, 1000);
         });
 
 
@@ -52,7 +66,7 @@ controller('ListControl', function($scope, $http, $timeout) {
 
 		//remove item from the server
 		$http.post('server/removeItem.php', removeData).success(function() {
-            $timeout(function() { $scope.retrieveList() }, 1000);
+            $timeout(function() { $scope.retrieveList(1) }, 1000);
         });
 	};
 
@@ -62,7 +76,7 @@ controller('ListControl', function($scope, $http, $timeout) {
         //if (confirmDelete) {
             //remove script on the server, then refresh list (no UI update if not successful)
             $http.post('server/removeAllGotten.php', {}).success(function() {
-                $timeout(function() { $scope.retrieveList() }, 1000);
+                $timeout(function() { $scope.retrieveList(1) }, 1000);
             });
         //}
         //else {};
@@ -79,12 +93,12 @@ controller('ListControl', function($scope, $http, $timeout) {
         //item state is already updated, so save based on the *new* state
         if ($scope.shoppingList[index].isGotten === true) {
             $http.post('server/markItemGotten.php', gottenData).success(function() {
-                $timeout(function() { $scope.retrieveList() }, 1000);
+                $timeout(function() { $scope.retrieveList(1) }, 1000);
             });
         }
         else {
             $http.post('server/unMarkItemGotten.php', gottenData).success(function() {
-                $timeout(function() { $scope.retrieveList() }, 1000);
+                $timeout(function() { $scope.retrieveList(1) }, 1000);
             });
         }
     };
@@ -99,7 +113,7 @@ controller('ListControl', function($scope, $http, $timeout) {
 
         };
         $http.post('server/editItemName.php', editData).success(function () {
-            $timeout(function() { $scope.retrieveList() }, 1000);
+            $timeout(function() { $scope.retrieveList(1) }, 1000);
         });
     };
 });

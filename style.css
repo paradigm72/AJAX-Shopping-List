@@ -24,7 +24,7 @@ body {
     display: inline-block;
     border-radius: 20px;
     box-shadow: 0 0 7px black;
-    text-align: center;
+    text-align: left;
 }
 
 table.lists {
