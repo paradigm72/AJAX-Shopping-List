@@ -18,6 +18,7 @@
 <script src="shoppingListNg.js"></script>
 <script src="shoppingListControlNg.js"></script>
 <script src="shoppingListPickerNg.js"></script>
+<script src="shoppingListDirectives.js"></script>
 
 <title>Shopping List</title>
 <html>
