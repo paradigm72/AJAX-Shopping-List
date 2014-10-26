@@ -27,23 +27,27 @@
 <body ng-app='shoppingList'>
 
 
-<div ng-controller="ListControl" data-ng-init="retrieveList(1)">
+
+    <!-- List Picker controller -->
+    <div ng-controller="ListPicker" data-ng-init="initializeList()">
     <div id="header" ng-click="retrieveList()">
         <img src='images/edit.png' class='button removeAll' ng-click="showListPicker()">
         Shopping List: listName
         <img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
     </div>
 
-    <div ng-controller="ListPicker" ng-show='pickerVisible'
-         data-ng-init="initializeList()" class='popover' ng-style='popoverLeftStyle()'>
+    <div ng-show='pickerVisible' class='popover' ng-style='popoverLeftStyle()'>
         <table class='lists'>
             <tr ng-repeat="list in listOfLists">
                 <td ng-click="switchToList($index)">{{list.name}}</td>
             </tr>
         </table>
     </div>
+    </div>
 
-        <table class="items">
+    <!-- Inidividual List controller -->
+    <div ng-controller="ListControl" data-ng-init="retrieveList(1)">
+    <table class="items">
         <tr ng-repeat="item in shoppingList">
             <td>
                 <itemname original-name='item.text' is-gotten='item.isGotten'
@@ -77,7 +81,7 @@
         </tr>
     </form>
     </table>
-</div>
+    </div>
 
 </body>
 </html>

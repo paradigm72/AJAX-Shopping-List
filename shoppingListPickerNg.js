@@ -1,9 +1,8 @@
 angular.module('shoppingList').
-controller('ListPicker', function($scope, $http, $timeout) {
-    $scope.$on('openListPicker', function() {
+controller('ListPicker', function($scope, $http, $timeout, listSwitcherService) {
+    $scope.showListPicker = function() {
         $scope.pickerVisible = true;
-
-    });
+    };
 
     $scope.popoverLeftStyle = function() {
         var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -13,8 +12,7 @@ controller('ListPicker', function($scope, $http, $timeout) {
     };
 
     $scope.switchToList = function(index) {
-        data = { 'index': index };
-        $scope.$emit('switchToList', data);
+        listSwitcherService.switchToList(index);
     }
 
     $scope.initializeList = function() {

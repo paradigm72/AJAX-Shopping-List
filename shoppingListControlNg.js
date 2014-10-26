@@ -1,8 +1,5 @@
 angular.module('shoppingList').
-controller('ListControl', function($scope, $http, $timeout) {
-     $scope.showListPicker = function() {
-         $scope.$broadcast('openListPicker');
-     }
+controller('ListControl', function($scope, $http, $timeout, listSwitcherService) {
 
      $scope.$on('switchToList', function(data) {
           $scope.retrieveList(2);
