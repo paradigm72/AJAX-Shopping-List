@@ -32,7 +32,7 @@
     <div ng-controller="ListPicker" data-ng-init="initializeList()">
     <div id="header" ng-click="retrieveList()">
         <img src='images/edit.png' class='button removeAll' ng-click="showListPicker()">
-        Shopping List: listName
+        Shopping List: {{currentSelectedName}}
         <img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
     </div>
 

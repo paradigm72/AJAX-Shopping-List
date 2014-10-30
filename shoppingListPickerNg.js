@@ -13,6 +13,8 @@ controller('ListPicker', function($scope, $http, $timeout, listSwitcherService) 
 
     $scope.switchToList = function(index) {
         listSwitcherService.switchToList(index);
+        $scope.pickerVisible = false;
+        $scope.currentSelectedName = $scope.listOfLists[index].name;
     }
 
     $scope.initializeList = function() {

@@ -1,12 +1,12 @@
 angular.module('shoppingList').
 controller('ListControl', function($scope, $http, $timeout, listSwitcherService) {
 
-     $scope.$on('switchToList', function(data) {
-          $scope.retrieveList(2);
+     $scope.$on('switchToList', function(event, args) {
+          $scope.retrieveList(args.index);
      });
 
      $scope.retrieveList = function(listID) {
-		 if (listID===1) {
+		 if (listID===0) {
              $http.get('server/retrieveList.php').success(function(data) {
                  $scope.shoppingList = data;
 
@@ -18,12 +18,27 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
                  }
              });
          }
-         if (listID===2) {
+         /* just to verify list switching */
+         if (listID===1) {
               $scope.shoppingList = [
                   { 'text': 'nuts', 'isGotten': true },
                   { 'text': 'bolts', 'isGotten': true },
                   { 'text': 'doodads', 'isGotten': false }
               ]
+         }
+         if (listID===2) {
+             $scope.shoppingList = [
+                 { 'text': 'bananas', 'isGotten': true },
+                 { 'text': 'apples', 'isGotten': true },
+                 { 'text': 'noosa yogurt', 'isGotten': false }
+             ]
+         }
+         if (listID===3) {
+             $scope.shoppingList = [
+                 { 'text': 'beer', 'isGotten': true },
+                 { 'text': 'wine', 'isGotten': true },
+                 { 'text': 'cheese', 'isGotten': false }
+             ]
          }
 
 
