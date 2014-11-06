@@ -32,7 +32,7 @@
     <div ng-controller="ListPicker" data-ng-init="initializeList()">
     <div id="header" ng-click="retrieveList()">
         <img src='images/edit.png' class='button removeAll' ng-click="showListPicker()">
-        Shopping List: {{currentSelectedName}}
+        {{currentSelectedName}}
         <img src='images/remove.png' class='button removeAll' ng-click="removeAll()">
     </div>
 
@@ -46,7 +46,7 @@
     </div>
 
     <!-- Inidividual List controller -->
-    <div ng-controller="ListControl" data-ng-init="retrieveList(1)">
+    <div ng-controller="ListControl" data-ng-init="retrieveList(0)">
     <table class="items">
         <tr ng-repeat="item in shoppingList">
             <td>

@@ -15,7 +15,11 @@ controller('ListPicker', function($scope, $http, $timeout, listSwitcherService) 
         listSwitcherService.switchToList(index);
         $scope.pickerVisible = false;
         $scope.currentSelectedName = $scope.listOfLists[index].name;
-    }
+    };
+
+    $scope.removeAll = function() {
+        listSwitcherService.removeAllFromCurrentList();
+    };
 
     $scope.initializeList = function() {
         $scope.listOfLists = [
@@ -24,6 +28,7 @@ controller('ListPicker', function($scope, $http, $timeout, listSwitcherService) 
             {name: 'Copps'},
             {name: 'Steves'}
         ];
+        $scope.currentSelectedName = $scope.listOfLists[0].name;
     };
 
     //methods:

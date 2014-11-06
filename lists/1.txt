@@ -1,6 +1,3 @@
-Triscuit||true 
-Milk%20and%20such%20other...%20things||true 
-Test%20second%20new%20item||true 
-New%20thing||false
-Test%20add%20new||false
-yet%20again||false
+nuts||false
+bolts||false
+screws||false

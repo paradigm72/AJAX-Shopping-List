@@ -1,5 +1,10 @@
 <?php
-	$filePointer = @fopen("../lists/1.txt", "rw");
+    //get the item index
+    $POSTDATA = file_get_contents("php://input");
+    $POSTDATA = json_decode($POSTDATA, true);
+    $listIndex = $POSTDATA['listIndex'];
+
+    $filePointer = @fopen("../lists/".$listIndex.".txt", "rw");
 	
 	if (!$filePointer) {
 		exit;

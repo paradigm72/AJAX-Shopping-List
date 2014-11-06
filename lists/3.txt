@@ -1,0 +1,5 @@
+wine||false
+beer||false
+scotch||false
+pretzels||false
+cheese||false

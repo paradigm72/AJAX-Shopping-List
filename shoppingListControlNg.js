@@ -5,21 +5,26 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
           $scope.retrieveList(args.index);
      });
 
-     $scope.retrieveList = function(listID) {
-		 if (listID===0) {
-             $http.get('server/retrieveList.php').success(function(data) {
-                 $scope.shoppingList = data;
+     $scope.$on('removeAllFromCurrentList', function() {
+         $scope.removeAll();
+     });
 
-                 //store decoded data in $scope.shoppingList
-                 for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
-                     $scope.shoppingList[i].text =
-                         decodeURIComponent($scope.shoppingList[i].text);
-                     $scope.shoppingList[i].beingEdited = false;
-                 }
-             });
-         }
+     $scope.retrieveList = function(listID) {
+         $scope.currentListID = listID;
+         var postData = { 'listIndex': listID };
+         $http.post('server/retrieveList.php', postData).success(function(data) {
+             $scope.shoppingList = data;
+
+             //store decoded data in $scope.shoppingList
+             for (var i = $scope.shoppingList.length - 1; i >= 0; i--) {
+                 $scope.shoppingList[i].text =
+                     decodeURIComponent($scope.shoppingList[i].text);
+                 $scope.shoppingList[i].beingEdited = false;
+             }
+         });
+
          /* just to verify list switching */
-         if (listID===1) {
+         /*if (listID===1) {
               $scope.shoppingList = [
                   { 'text': 'nuts', 'isGotten': true },
                   { 'text': 'bolts', 'isGotten': true },
@@ -39,7 +44,7 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
                  { 'text': 'wine', 'isGotten': true },
                  { 'text': 'cheese', 'isGotten': false }
              ]
-         }
+         } */
 
 
     };
@@ -59,9 +64,10 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
 
 		
 		//send new item to the server
-		var postData = { 'itemName': newItem.text };
+		var postData = { 'itemName': newItem.text,
+                         'listIndex': $scope.currentListID };
 		$http.post('server/addToList.php', postData).success(function() {
-            $timeout(function() { $scope.retrieveList(1) }, 1000);
+            $timeout(function() { $scope.retrieveList($scope.currentListID) }, 1000);
         });
 
 
@@ -70,15 +76,16 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
 	$scope.removeItem = function(index, itemName) {
 		var removeData = {
 			'itemIndex': index,
-            'itemName': itemName  //for fuzzy data integrity checking
-		};
+            'itemName': itemName,  //for fuzzy data integrity checking
+            'listIndex': $scope.currentListID
+        };
 
 		//remove item on the client
 		$scope.shoppingList.splice(index, 1);
 
 		//remove item from the server
 		$http.post('server/removeItem.php', removeData).success(function() {
-            $timeout(function() { $scope.retrieveList(1) }, 1000);
+            $timeout(function() { $scope.retrieveList($scope.currentListID) }, 1000);
         });
 	};
 
@@ -87,8 +94,12 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
         //var confirmDelete = confirm("Are you sure you want to clear the list?");
         //if (confirmDelete) {
             //remove script on the server, then refresh list (no UI update if not successful)
-            $http.post('server/removeAllGotten.php', {}).success(function() {
-                $timeout(function() { $scope.retrieveList(1) }, 1000);
+        var removeData = {
+            'listIndex': $scope.currentListID
+        };
+
+        $http.post('server/removeAllGotten.php', removeData).success(function() {
+                $timeout(function() { $scope.retrieveList($scope.currentListID) }, 1000);
             });
         //}
         //else {};
@@ -100,17 +111,18 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
 
         var gottenData = {
             'itemIndex': index,
-            'itemName': itemName  //for fuzzy data integrity checking
+            'itemName': itemName,  //for fuzzy data integrity checking
+            'listIndex': $scope.currentListID
         };
         //item state is already updated, so save based on the *new* state
         if ($scope.shoppingList[index].isGotten === true) {
             $http.post('server/markItemGotten.php', gottenData).success(function() {
-                $timeout(function() { $scope.retrieveList(1) }, 1000);
+                $timeout(function() { $scope.retrieveList($scope.currentListID) }, 1000);
             });
         }
         else {
             $http.post('server/unMarkItemGotten.php', gottenData).success(function() {
-                $timeout(function() { $scope.retrieveList(1) }, 1000);
+                $timeout(function() { $scope.retrieveList($scope.currentListID) }, 1000);
             });
         }
     };
@@ -121,11 +133,11 @@ controller('ListControl', function($scope, $http, $timeout, listSwitcherService)
         var editData = {
             'itemIndex': index,
             'itemNewName': newName,
-            'itemOriginalName': originalName   //for fuzzy data integrity checking
-
+            'itemOriginalName': originalName,   //for fuzzy data integrity checking
+            'listIndex': $scope.currentListID
         };
         $http.post('server/editItemName.php', editData).success(function () {
-            $timeout(function() { $scope.retrieveList(1) }, 1000);
+            $timeout(function() { $scope.retrieveList($scope.currentListID) }, 1000);
         });
     };
 });

@@ -32,6 +32,8 @@
 	$POSTDATA = file_get_contents("php://input");
 	$POSTDATA = json_decode($POSTDATA, true);
 	$itemName = $POSTDATA['itemName'];
+    $listIndex = $POSTDATA['listIndex'];
+
 
 	$firephp->log($itemName, "itemName");
 	
@@ -42,7 +44,7 @@
 	if (strlen($itemName)==0) { exit; }
 
 	//open file for appending (start after the last pre-existing line)
-	$filePointer = @fopen("../lists/1.txt", "a");	
+	$filePointer = @fopen("../lists/".$listIndex.".txt", "a");
 	if (!$filePointer) { exit; }
 	
 	//add the item as "new"	

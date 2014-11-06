@@ -21,11 +21,12 @@
 	$itemIndex = $POSTDATA['itemIndex'];
 	$itemNewName = $POSTDATA['itemNewName'];
     $itemOriginalName = $POSTDATA['itemOriginalName'];
+    $listIndex = $POSTDATA['listIndex'];
 	
 	$itemNewName = rawurlencode($itemNewName);
 	
 	
-	$filePointer = @fopen("../lists/1.txt", "r");	
+	$filePointer = @fopen("../lists/".$listIndex.".txt", "r");
 	if (!$filePointer) {
 		exit;
 	}
@@ -67,6 +68,6 @@
 	
 	//now overwrite the entire contents of the file with the string that's in memory
 	fclose($filePointer);
-	$filePointer = @fopen("../lists/1.txt", "w");
+	$filePointer = @fopen("../lists/".$listIndex.".txt", "w");
 	fwrite($filePointer, $tempFileContents);	
 ?>

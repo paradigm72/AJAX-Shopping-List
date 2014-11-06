@@ -7,5 +7,9 @@ angular.module('shoppingList').factory('listSwitcherService', function($rootScop
         $rootScope.$broadcast('switchToList',  { 'index': index });
     }
 
+    _listSwitcherService.removeAllFromCurrentList = function() {
+        $rootScope.$broadcast('removeAllFromCurrentList');
+    }
+
     return _listSwitcherService;
 });

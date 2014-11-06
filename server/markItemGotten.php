@@ -3,8 +3,10 @@
     $POSTDATA = json_decode($POSTDATA, true);
     $itemIndex = $POSTDATA['itemIndex'];
     $itemNamePOST = $POSTDATA['itemName'];
+    $listIndex = $POSTDATA['listIndex'];
+
 	
-	$filePointer = @fopen("../lists/1.txt", "r+");	
+	$filePointer = @fopen("../lists/".$listIndex.".txt", "r+");
 	if (!$filePointer) {
 		exit;
 	}	
